@@ -1,0 +1,5 @@
+.DS_Store
+Thumbs.db
+*.swp
+node_modules/
+StructTech_Site_Audit.md
