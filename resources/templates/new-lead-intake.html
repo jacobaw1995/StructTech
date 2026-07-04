@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Lead Intake Form | StructTech Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --orange: #f97316; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #fff; color: #111; font-size: 13px; }
+
+    .print-bar { background: #0f172a; color: #fff; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+    .print-bar a { color: #f97316; text-decoration: none; }
+    .print-btn { background: #f97316; color: #fff; border: none; padding: 7px 18px; border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+    @media print { .print-bar { display: none; } }
+
+    .doc { max-width: 820px; margin: 0 auto; padding: 40px 32px 60px; }
+
+    .doc-header { border-bottom: 3px solid #f97316; padding-bottom: 18px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; }
+    .doc-header .left h1 { font-size: 22px; font-weight: 800; }
+    .doc-header .left .sub { font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 3px; }
+    .doc-header .right { text-align: right; }
+    .doc-header .brand { font-family: var(--font-mono); font-size: 11px; color: #64748b; }
+    .lead-badge { display: inline-block; margin-top: 6px; background: #f97316; color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono); font-weight: 700; }
+
+    /* Priority score indicator */
+    .priority-bar { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .priority-bar .pb-label { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; }
+    .priority-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .priority-opt { display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer; padding: 5px 12px; border: 2px solid #e2e8f0; border-radius: 20px; transition: all 0.15s; }
+    .priority-opt input { accent-color: #f97316; }
+    .priority-opt.p-hot { border-color: #ef4444; }
+    .priority-opt.p-warm { border-color: #f97316; }
+    .priority-opt.p-cool { border-color: #3b82f6; }
+
+    .section-label { background: #0f172a; color: #fff; padding: 8px 14px; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; margin-top: 28px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .field-group { margin-bottom: 14px; }
+    .field-group label { display: block; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 4px; }
+    .field-group input, .field-group select, .field-group textarea {
+      width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 10px;
+      font-size: 13px; font-family: var(--font-body); background: #f8fafc; color: #111;
+    }
+    .field-group textarea { min-height: 70px; resize: vertical; }
+
+    /* Qualification checklist */
+    .qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .qual-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; }
+    .qual-item input { accent-color: #f97316; margin-top: 2px; flex-shrink: 0; width: 15px; height: 15px; }
+    .qual-item .qi-text .qi-title { font-size: 13px; font-weight: 500; display: block; }
+    .qual-item .qi-text .qi-note { font-size: 11px; color: #64748b; font-family: var(--font-mono); margin-top: 2px; }
+    .qual-item.green { border-color: #86efac; background: #f0fdf4; }
+    .qual-item.red { border-color: #fca5a5; background: #fff5f5; }
+
+    /* Budget range selector */
+    .budget-opts { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
+    .budget-opt { border: 2px solid #e2e8f0; border-radius: 6px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.15s; }
+    .budget-opt:has(input:checked) { border-color: #f97316; background: #fff7ed; }
+    .budget-opt input { display: none; }
+    .budget-opt .bo-range { font-size: 13px; font-weight: 700; font-family: var(--font-mono); }
+    .budget-opt .bo-label { font-size: 10px; color: #64748b; margin-top: 2px; }
+
+    /* Timeline slider visual */
+    .timeline-row { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .timeline-opt { flex: 1; min-width: 80px; border: 2px solid #e2e8f0; border-radius: 6px; padding: 10px 8px; text-align: center; cursor: pointer; }
+    .timeline-opt:has(input:checked) { border-color: #2563eb; background: #eff6ff; }
+    .timeline-opt input { display: none; }
+    .timeline-opt .to-label { font-size: 12px; font-weight: 600; font-family: var(--font-mono); }
+    .timeline-opt .to-sub { font-size: 10px; color: #64748b; margin-top: 2px; }
+
+    /* Lead source */
+    .source-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
+    .source-opt { border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px; text-align: center; cursor: pointer; font-size: 12px; font-family: var(--font-mono); }
+    .source-opt:has(input:checked) { border-color: #7c3aed; background: #faf5ff; color: #7c3aed; font-weight: 700; }
+    .source-opt input { display: none; }
+
+    /* Next action */
+    .action-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+    .action-opt { border: 2px solid #e2e8f0; border-radius: 6px; padding: 12px; cursor: pointer; }
+    .action-opt:has(input:checked) { border-color: #0f172a; background: #f8fafc; }
+    .action-opt input { display: none; }
+    .action-opt .ao-title { font-size: 13px; font-weight: 700; }
+    .action-opt .ao-sub { font-size: 11px; color: #64748b; margin-top: 3px; font-family: var(--font-mono); }
+
+    /* Disqualifiers warning */
+    .disq-box { background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 14px 16px; margin-bottom: 20px; }
+    .disq-box .db-title { font-size: 11px; font-family: var(--font-mono); font-weight: 700; color: #dc2626; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .disq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .disq-item { display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; }
+    .disq-item input { accent-color: #dc2626; }
+
+    .notes-section { margin-bottom: 24px; }
+    .notes-section label { display: block; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 6px; }
+    .notes-section textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 10px; font-family: var(--font-body); font-size: 13px; color: #111; height: 80px; resize: vertical; background: #f8fafc; }
+
+    /* Follow-up planner */
+    .followup-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .fu-box { border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px; }
+    .fu-box .fu-label { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 8px; }
+    .fu-box input { width: 100%; border: none; background: transparent; font-size: 14px; font-weight: 600; outline: none; font-family: var(--font-mono); }
+
+    .doc-footer { border-top: 1px solid #e2e8f0; padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-top: 28px; }
+    .doc-footer a { color: #f97316; text-decoration: none; }
+    @media print { body { font-size: 11px; } .doc { padding: 16px; } }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>StructTech · New Lead Intake Form · <a href="/resources/">Back to Resources</a></span>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="doc">
+
+  <div class="doc-header">
+    <div class="left">
+      <h1>NEW LEAD INTAKE FORM</h1>
+      <div class="sub">Capture everything. Qualify fast. Never miss a follow-up.</div>
+    </div>
+    <div class="right">
+      <div class="brand">STRUCTTECH · structtek.com</div>
+      <div class="lead-badge">LEAD #: ____________</div>
+    </div>
+  </div>
+
+  <!-- Priority tag -->
+  <div class="priority-bar">
+    <div class="pb-label">Lead Priority</div>
+    <div class="priority-row">
+      <label class="priority-opt p-hot"><input type="radio" name="priority" value="hot"> 🔥 Hot — Ready to go</label>
+      <label class="priority-opt p-warm"><input type="radio" name="priority" value="warm"> 🟡 Warm — Deciding soon</label>
+      <label class="priority-opt p-cool"><input type="radio" name="priority" value="cool"> 🔵 Cool — Just shopping</label>
+      <label class="priority-opt"><input type="radio" name="priority" value="unknown"> ❓ Unknown — Needs qualifying</label>
+    </div>
+    <div style="margin-left:auto;">
+      <div class="field-group" style="margin:0;"><label>Date / Time of Inquiry</label><input type="datetime-local"></div>
+    </div>
+  </div>
+
+  <!-- Contact info -->
+  <div class="section-label">CONTACT INFORMATION</div>
+  <div class="two-col" style="margin-bottom:14px;">
+    <div class="field-group"><label>First Name</label><input type="text" placeholder="First"></div>
+    <div class="field-group"><label>Last Name</label><input type="text" placeholder="Last"></div>
+  </div>
+  <div class="three-col" style="margin-bottom:14px;">
+    <div class="field-group"><label>Phone (Best Number)</label><input type="tel" placeholder="(937) 000-0000"></div>
+    <div class="field-group"><label>Alt Phone / Cell</label><input type="tel" placeholder="(937) 000-0000"></div>
+    <div class="field-group"><label>Email</label><input type="email" placeholder="client@email.com"></div>
+  </div>
+  <div class="two-col" style="margin-bottom:14px;">
+    <div class="field-group"><label>Service Address</label><input type="text" placeholder="123 Main St, Tipp City, OH 45371"></div>
+    <div class="field-group"><label>Billing Address (if different)</label><input type="text" placeholder="Same as above or enter address"></div>
+  </div>
+  <div class="three-col">
+    <div class="field-group"><label>Property Type</label>
+      <select>
+        <option value="">Select...</option>
+        <option>Residential — Owner Occupied</option>
+        <option>Residential — Rental Property</option>
+        <option>Commercial — Small</option>
+        <option>Commercial — Large</option>
+        <option>New Construction</option>
+        <option>Vacant / Flip</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Preferred Contact Method</label>
+      <select>
+        <option>Call</option>
+        <option>Text</option>
+        <option>Email</option>
+        <option>Any</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Best Time to Reach</label>
+      <select>
+        <option>Morning (8am–12pm)</option>
+        <option>Afternoon (12–5pm)</option>
+        <option>Evening (5–8pm)</option>
+        <option>Anytime</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Job scope -->
+  <div class="section-label">JOB SCOPE &amp; DETAILS</div>
+  <div class="field-group"><label>What Do They Need? (Describe in their own words)</label><textarea placeholder="Write down what the client said — verbatim if possible. Their language tells you more than a category."></textarea></div>
+  <div class="three-col" style="margin-bottom:14px;">
+    <div class="field-group"><label>Trade / Category</label>
+      <select>
+        <option value="">Select trade...</option>
+        <option>HVAC</option>
+        <option>Roofing</option>
+        <option>Electrical</option>
+        <option>Plumbing</option>
+        <option>Concrete / Flatwork</option>
+        <option>General Contracting</option>
+        <option>Multiple Trades</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Service Type</label>
+      <select>
+        <option value="">Select...</option>
+        <option>New Installation</option>
+        <option>Full Replacement</option>
+        <option>Repair / Service Call</option>
+        <option>Maintenance</option>
+        <option>Inspection / Quote Only</option>
+        <option>Emergency</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Estimated Square Footage / Scale</label><input type="text" placeholder="e.g. 2,200 sq ft / 3-ton / 24 sq roof"></div>
+  </div>
+  <div class="field-group"><label>Specific Equipment, Materials, or Brands Requested</label><input type="text" placeholder="e.g. Carrier preferred, 16 SEER minimum, architectural shingles only..."></div>
+  <div class="field-group"><label>Existing System / Condition (if replacement or repair)</label><input type="text" placeholder="e.g. 2008 Lennox, not cooling, leaking freon — wants full replacement"></div>
+
+  <!-- Budget -->
+  <div class="section-label">BUDGET</div>
+  <div class="budget-opts">
+    <label class="budget-opt"><input type="radio" name="budget"><div class="bo-range">Under $500</div><div class="bo-label">Small repair</div></label>
+    <label class="budget-opt"><input type="radio" name="budget"><div class="bo-range">$500–$2K</div><div class="bo-label">Mid repair</div></label>
+    <label class="budget-opt"><input type="radio" name="budget"><div class="bo-range">$2K–$8K</div><div class="bo-label">Project</div></label>
+    <label class="budget-opt"><input type="radio" name="budget"><div class="bo-range">$8K–$25K</div><div class="bo-label">Large job</div></label>
+    <label class="budget-opt"><input type="radio" name="budget"><div class="bo-range">$25K+</div><div class="bo-label">Commercial</div></label>
+  </div>
+  <div class="two-col" style="margin-bottom:0;">
+    <div class="field-group"><label>Stated Budget (if they mentioned one)</label><input type="text" placeholder="$0,000 or 'no idea' or 'as cheap as possible'"></div>
+    <div class="field-group"><label>Financing Interest</label>
+      <select>
+        <option>Not asked / Unknown</option>
+        <option>Yes — they asked about financing</option>
+        <option>No — paying cash or card</option>
+        <option>Insurance claim involved</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="section-label">TIMELINE</div>
+  <div class="timeline-row">
+    <label class="timeline-opt"><input type="radio" name="timeline"><div class="to-label">TODAY</div><div class="to-sub">Emergency</div></label>
+    <label class="timeline-opt"><input type="radio" name="timeline"><div class="to-label">THIS WEEK</div><div class="to-sub">Urgent</div></label>
+    <label class="timeline-opt"><input type="radio" name="timeline"><div class="to-label">2–4 WEEKS</div><div class="to-sub">Normal</div></label>
+    <label class="timeline-opt"><input type="radio" name="timeline"><div class="to-label">1–3 MONTHS</div><div class="to-sub">Planning</div></label>
+    <label class="timeline-opt"><input type="radio" name="timeline"><div class="to-label">3+ MONTHS</div><div class="to-sub">Early stage</div></label>
+    <label class="timeline-opt"><input type="radio" name="timeline"><div class="to-label">UNKNOWN</div><div class="to-sub">To qualify</div></label>
+  </div>
+  <div class="field-group"><label>Specific Date Constraint or Deadline (if any)</label><input type="text" placeholder="e.g. Need done before July 4th, house closing on Aug 15th, wedding in backyard Sept 1..."></div>
+
+  <!-- Lead source -->
+  <div class="section-label">HOW DID THEY FIND YOU?</div>
+  <div class="source-grid">
+    <label class="source-opt"><input type="radio" name="source"> Referral</label>
+    <label class="source-opt"><input type="radio" name="source"> Google Search</label>
+    <label class="source-opt"><input type="radio" name="source"> Google Maps</label>
+    <label class="source-opt"><input type="radio" name="source"> Facebook / IG</label>
+    <label class="source-opt"><input type="radio" name="source"> Nextdoor</label>
+    <label class="source-opt"><input type="radio" name="source"> Door Hanger</label>
+    <label class="source-opt"><input type="radio" name="source"> Yard Sign</label>
+    <label class="source-opt"><input type="radio" name="source"> Repeat Client</label>
+  </div>
+  <div class="field-group"><label>Referral Source Name (if referred)</label><input type="text" placeholder="Name of person who referred them — thank them later"></div>
+
+  <!-- Qualification -->
+  <div class="section-label">QUICK QUALIFY — Check ALL that apply</div>
+  <div class="qual-grid">
+    <label class="qual-item green"><input type="checkbox"><div class="qi-text"><span class="qi-title">Decision-maker is on the phone / in contact</span><span class="qi-note">Not "I have to check with my wife/boss/landlord"</span></div></label>
+    <label class="qual-item green"><input type="checkbox"><div class="qi-text"><span class="qi-title">Has a real, specific timeline</span><span class="qi-note">Not just "sometime this year"</span></div></label>
+    <label class="qual-item green"><input type="checkbox"><div class="qi-text"><span class="qi-title">Budget aligns with likely job cost</span><span class="qi-note">They understand this costs real money</span></div></label>
+    <label class="qual-item green"><input type="checkbox"><div class="qi-text"><span class="qi-title">Clear, defined scope</span><span class="qi-note">We can actually quote this without a site visit mystery</span></div></label>
+    <label class="qual-item red"><input type="checkbox"><div class="qi-text"><span class="qi-title">Getting multiple quotes, undecided</span><span class="qi-note">Not disqualifying — just adjust your effort level</span></div></label>
+    <label class="qual-item red"><input type="checkbox"><div class="qi-text"><span class="qi-title">Mentioned price being the only factor</span><span class="qi-note">Race-to-bottom risk — likely to price shop</span></div></label>
+  </div>
+
+  <!-- Disqualifiers -->
+  <div class="disq-box">
+    <div class="db-title">⚠ Flag for Review — Disqualifiers</div>
+    <div class="disq-grid">
+      <label class="disq-item"><input type="checkbox"> Outside our service area</label>
+      <label class="disq-item"><input type="checkbox"> Job size below our minimum</label>
+      <label class="disq-item"><input type="checkbox"> Trade we don't cover</label>
+      <label class="disq-item"><input type="checkbox"> Dispute / problem client history</label>
+      <label class="disq-item"><input type="checkbox"> No budget — price is the only factor</label>
+      <label class="disq-item"><input type="checkbox"> Unrealistic timeline / expectations</label>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="notes-section">
+    <label>Additional Notes — Anything Else Worth Capturing?</label>
+    <textarea placeholder="Tone of call, anything unusual, what they mentioned about competitors, specific concerns, pet info, parking access, who answered the door — whatever helps the estimator show up prepared."></textarea>
+  </div>
+
+  <!-- Next action -->
+  <div class="section-label">NEXT ACTION</div>
+  <div class="action-row">
+    <label class="action-opt"><input type="radio" name="next_action"><div class="ao-title">Schedule Site Visit</div><div class="ao-sub">Need to see it to quote it</div></label>
+    <label class="action-opt"><input type="radio" name="next_action"><div class="ao-title">Send Estimate Remotely</div><div class="ao-sub">Have enough info now</div></label>
+    <label class="action-opt"><input type="radio" name="next_action"><div class="ao-title">Qualify Further</div><div class="ao-sub">Need more info before investing time</div></label>
+  </div>
+
+  <!-- Follow-up schedule -->
+  <div class="followup-row">
+    <div class="fu-box">
+      <div class="fu-label">Site Visit / Follow-Up Date</div>
+      <input type="datetime-local">
+    </div>
+    <div class="fu-box">
+      <div class="fu-label">Estimate Due By</div>
+      <input type="date">
+    </div>
+    <div class="fu-box">
+      <div class="fu-label">Assigned To</div>
+      <input type="text" placeholder="Name">
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Template by <a href="https://structtek.com">StructTech</a> — Free to use and share</span>
+    <span>structtek.com/resources · 937.467.2660</span>
+  </div>
+
+</div>
+</body>
+</html>

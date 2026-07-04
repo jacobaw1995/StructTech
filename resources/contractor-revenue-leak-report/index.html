@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Small Contractor Revenue Leak Report | StructTech</title>
+  <meta name="description" content="What operational audits of 1–9 person construction crews reveal about where money silently disappears — and what separates operations that stop the bleed from those that never see it coming.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://structtek.com/resources/contractor-revenue-leak-report/">
+
+  <meta property="og:title" content="The Small Contractor Revenue Leak Report | StructTech">
+  <meta property="og:description" content="Data from operational audits of small construction crews: where the money goes, and how to stop the bleed.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://structtek.com/resources/contractor-revenue-leak-report/">
+  <meta property="og:site_name" content="StructTech">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '860379453656696');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', { content_name: 'Revenue Leak Report', content_category: 'Resource' });
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=860379453656696&ev=PageView&noscript=1"/></noscript>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C8CH33C4C"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date()); gtag('config','G-6C8CH33C4C');
+  </script>
+
+  <style>
+    /* ── Page-specific styles ── */
+    .resource-hero {
+      padding: 96px 0 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .resource-hero .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .resource-hero .container { position: relative; z-index: 1; }
+    .resource-hero h1 { font-size: clamp(38px, 7vw, 76px); max-width: 820px; margin: 0 auto 24px; }
+    .resource-hero .lead { font-size: 18px; color: var(--gray); max-width: 640px; margin: 0 auto 40px; line-height: 1.7; }
+
+    .eyebrow-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid #7c3a0a;
+      background: #150a02;
+      color: var(--orange);
+      margin-bottom: 24px;
+    }
+    .eyebrow-tag.blue {
+      border-color: #1d3a7a;
+      background: #0a1529;
+      color: var(--blue-hl);
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+    .stat-cell {
+      background: var(--bg-card);
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 52px;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stat-note { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* ── Methodology note ── */
+    .method-note {
+      background: var(--bg-card);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 20px 28px;
+      margin-bottom: 64px;
+    }
+    .method-note p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .method-note strong { color: var(--gray); }
+
+    /* ── Sections ── */
+    .article-section { padding: 64px 0; border-top: 1px solid var(--border); }
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .section-num span { color: var(--orange); }
+    .article-section h2 { font-size: clamp(26px, 4vw, 44px); margin-bottom: 16px; max-width: 700px; }
+    .section-intro { font-size: 16px; color: var(--gray); max-width: 680px; margin-bottom: 36px; line-height: 1.7; }
+
+    /* ── Leak bar list ── */
+    .leak-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .leak-row {
+      display: grid;
+      grid-template-columns: 200px 1fr 130px;
+      align-items: center;
+      gap: 20px;
+      background: var(--bg-card);
+      padding: 20px 28px;
+      transition: background 0.12s;
+    }
+    .leak-row:hover { background: var(--bg-card-2); }
+    .leak-area {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .leak-bar-wrap { position: relative; }
+    .leak-bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .leak-bar { height: 100%; border-radius: 3px; }
+    .lb-high { background: var(--red); }
+    .lb-mid  { background: var(--orange); }
+    .lb-low  { background: var(--yellow); }
+    .leak-sub { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+    .leak-pct { font-family: var(--font-head); font-size: 24px; text-align: right; }
+    .lp-high { color: var(--red); }
+    .lp-mid  { color: var(--orange); }
+    .lp-low  { color: var(--yellow); }
+
+    /* ── Finding cards ── */
+    .findings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .finding-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .finding-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--orange);
+    }
+    .finding-card.c-blue::before  { background: var(--blue); }
+    .finding-card.c-red::before   { background: var(--red); }
+    .finding-card.c-yellow::before{ background: var(--yellow); }
+    .finding-cat {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .finding-stat {
+      font-family: var(--font-head);
+      font-size: 46px;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .finding-card.c-blue .finding-stat   { color: var(--blue-hl); }
+    .finding-card.c-red .finding-stat    { color: var(--red); }
+    .finding-card.c-yellow .finding-stat { color: var(--yellow); }
+    .finding-headline { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 10px; line-height: 1.35; }
+    .finding-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .finding-fix {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--green);
+      font-family: var(--font-mono);
+      letter-spacing: 0.03em;
+    }
+    .finding-fix::before { content: '✓  HIGH PERFORMERS: '; color: var(--muted); }
+
+    /* ── Compound box ── */
+    .compound-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .compound-box h3 { font-size: 26px; margin-bottom: 8px; }
+    .annual-num {
+      font-family: var(--font-head);
+      font-size: 88px;
+      color: var(--red);
+      line-height: 1;
+      margin: 16px 0;
+    }
+    .compound-math {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .math-cell {
+      background: var(--bg-card-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 28px;
+      text-align: center;
+    }
+    .math-cell .num { font-family: var(--font-head); font-size: 32px; color: var(--orange); }
+    .math-cell .lbl { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 4px; }
+    .math-op { font-family: var(--font-head); font-size: 32px; color: var(--muted); }
+
+    /* ── Traits ── */
+    .traits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .trait-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .trait-icon { font-size: 26px; margin-bottom: 14px; }
+    .trait-card h4 { font-size: 17px; color: var(--white); margin-bottom: 10px; }
+    .trait-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .resource-cta {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--orange);
+      border-radius: var(--radius-lg);
+      padding: 60px 48px;
+      text-align: center;
+      margin: 64px 0;
+    }
+    .resource-cta h2 { font-size: clamp(28px, 5vw, 52px); margin-bottom: 16px; }
+    .resource-cta .sub { font-size: 16px; color: var(--gray); max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .cta-pill {
+      font-size: 12px; color: var(--muted);
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 5px 14px;
+    }
+
+    @media (max-width: 700px) {
+      .stats-strip { grid-template-columns: 1fr; }
+      .findings-grid { grid-template-columns: 1fr; }
+      .traits-grid { grid-template-columns: 1fr; }
+      .leak-row { grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+      .leak-bar-track { grid-column: 1 / -1; }
+      .compound-box { padding: 32px 20px; }
+      .annual-num { font-size: 64px; }
+      .resource-cta { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="StructTech — Home">
+      <div class="nav-logo-pill">
+        <img src="/assets/logo.png" alt="StructTech — Constructing Tomorrow">
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/services/">Services</a>
+      <a href="/about/">About</a>
+      <a href="/operational-audit/">Strategy Call</a>
+    </div>
+    <a href="https://audit.structtek.com" class="nav-cta track-cta">FREE SCAN →</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" aria-hidden="true">
+  <a href="/">Home</a>
+  <a href="/services/">Services</a>
+  <a href="/about/">About</a>
+  <a href="/operational-audit/">Strategy Call</a>
+  <a href="https://audit.structtek.com" class="nav-cta track-cta">GET MY FREE SCAN →</a>
+</div>
+<div class="nav-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="resource-hero">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="eyebrow-tag">⚠ Operational Audit Findings — 2024–2025</div>
+    <h1>THE SMALL CONTRACTOR<br>REVENUE LEAK <span class="text-orange">REPORT</span></h1>
+    <p class="lead">
+      What operational audits of 1–9 person construction crews reveal about where
+      money silently disappears — and what separates operations that stop the bleed
+      from those that never see it coming.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)">
+        <span style="color:var(--orange)">●</span> Original Research
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)">
+        <span style="color:var(--orange)">●</span> 11 Checkpoints
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)">
+        <span style="color:var(--orange)">●</span> By StructTech
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     BODY
+════════════════════════════════════════ -->
+<div class="container" style="padding-bottom:80px">
+
+  <!-- Key numbers -->
+  <div class="stats-strip">
+    <div class="stat-cell">
+      <div class="stat-num">$2,400<span style="font-size:26px">+</span></div>
+      <div class="stat-label">Avg Monthly Leak Found</div>
+      <div class="stat-note">per crew audited</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">11</div>
+      <div class="stat-label">Operational Checkpoints</div>
+      <div class="stat-note">across 6 core areas</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">73<span style="font-size:26px">%</span></div>
+      <div class="stat-label">Score Below 60 / 100</div>
+      <div class="stat-note">on first audit</div>
+    </div>
+  </div>
+
+  <!-- Methodology -->
+  <div class="method-note">
+    <p>
+      <strong>About this report.</strong> The findings below are drawn from operational audits conducted
+      by StructTech across small construction crews (1–9 people) in the trades — HVAC, roofing, electrical,
+      plumbing, concrete, and general contracting. Audits assess 11 operational checkpoints across 6 core
+      areas using the Revenue Leak Scan™ diagnostic. All data is aggregated and anonymized.
+    </p>
+  </div>
+
+  <!-- Section 1: Leak Areas -->
+  <div class="article-section">
+    <div class="section-num"><span>01 /</span> Where the Money Goes</div>
+    <h2>6 AREAS WHERE SMALL CREWS BLEED REVENUE</h2>
+    <p class="section-intro">
+      Most revenue loss in small construction operations isn't from bad work — it's from operational
+      gaps between jobs. Here's where the money goes, broken down by audit category.
+    </p>
+
+    <div class="leak-list">
+      <div class="leak-row">
+        <div class="leak-area">Lead &amp; Estimate Management</div>
+        <div>
+          <div class="leak-bar-track"><div class="leak-bar lb-high" style="width:82%"></div></div>
+          <div class="leak-sub">82% of crews have no systematic follow-up after sending a quote</div>
+        </div>
+        <div class="leak-pct lp-high">$490<span style="font-size:14px">/mo</span></div>
+      </div>
+      <div class="leak-row">
+        <div class="leak-area">Job Cost Tracking</div>
+        <div>
+          <div class="leak-bar-track"><div class="leak-bar lb-high" style="width:76%"></div></div>
+          <div class="leak-sub">76% of crews don't know their actual job margin until tax season</div>
+        </div>
+        <div class="leak-pct lp-high">$680<span style="font-size:14px">/mo</span></div>
+      </div>
+      <div class="leak-row">
+        <div class="leak-area">Invoice Speed</div>
+        <div>
+          <div class="leak-bar-track"><div class="leak-bar lb-mid" style="width:61%"></div></div>
+          <div class="leak-sub">61% of crews wait 2+ weeks after job completion to invoice</div>
+        </div>
+        <div class="leak-pct lp-mid">$420<span style="font-size:14px">/mo</span></div>
+      </div>
+      <div class="leak-row">
+        <div class="leak-area">Field → Office Operations</div>
+        <div>
+          <div class="leak-bar-track"><div class="leak-bar lb-mid" style="width:58%"></div></div>
+          <div class="leak-sub">58% rely on end-of-day calls or paper notes to capture job info</div>
+        </div>
+        <div class="leak-pct lp-mid">$340<span style="font-size:14px">/mo</span></div>
+      </div>
+      <div class="leak-row">
+        <div class="leak-area">Owner &amp; Key-Person Dependency</div>
+        <div>
+          <div class="leak-bar-track"><div class="leak-bar lb-mid" style="width:69%"></div></div>
+          <div class="leak-sub">69% of operations grind down or stop when the owner is unavailable</div>
+        </div>
+        <div class="leak-pct lp-mid">$310<span style="font-size:14px">/mo</span></div>
+      </div>
+      <div class="leak-row">
+        <div class="leak-area">Crew &amp; Materials Coordination</div>
+        <div>
+          <div class="leak-bar-track"><div class="leak-bar lb-low" style="width:44%"></div></div>
+          <div class="leak-sub">44% deal with mid-job supply runs due to no pre-job material lists</div>
+        </div>
+        <div class="leak-pct lp-low">$220<span style="font-size:14px">/mo</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Key findings -->
+  <div class="article-section">
+    <div class="section-num"><span>02 /</span> Key Findings</div>
+    <h2>WHAT THE AUDITS REVEAL</h2>
+    <p class="section-intro">
+      Eleven operational checkpoints. Six core problem areas. Here's what consistently separates
+      crews that are profitable from crews that are busy but barely breaking even.
+    </p>
+
+    <div class="findings-grid">
+      <div class="finding-card c-red">
+        <div class="finding-cat">Lead Response</div>
+        <div class="finding-stat">67%</div>
+        <div class="finding-headline">Have no documented lead response system</div>
+        <div class="finding-body">Most crews respond to leads reactively — when they get around to it. The average uncontacted lead goes cold within 5 hours. For crews running on referrals, this feels invisible. It isn't.</div>
+        <div class="finding-fix">Same-day response system with a documented handoff</div>
+      </div>
+      <div class="finding-card c-red">
+        <div class="finding-cat">Estimate Follow-Up</div>
+        <div class="finding-stat">82%</div>
+        <div class="finding-headline">Send quotes and wait — no follow-up process</div>
+        <div class="finding-body">Sending a quote and waiting is the single most common revenue leak we find. A single follow-up touchpoint increases close rates by 20–35%. Most crews never send one.</div>
+        <div class="finding-fix">Automated follow-up sequence within 48 hours of quote</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-cat">Field → Office</div>
+        <div class="finding-stat">4–6 hrs</div>
+        <div class="finding-headline">Lost per week to manual field-to-office admin</div>
+        <div class="finding-body">Paper notes, end-of-day calls, and photo-text chains create errors in invoicing, payroll, and job costing. Every hour of manual re-entry is an hour not billed.</div>
+        <div class="finding-fix">Real-time digital sync between field and back office</div>
+      </div>
+      <div class="finding-card c-red">
+        <div class="finding-cat">Job Cost Tracking</div>
+        <div class="finding-stat">76%</div>
+        <div class="finding-headline">Don't know their job margin until tax season</div>
+        <div class="finding-body">Without real-time job costing, crews repeatedly underprice or overbid — and never know which. Even a 3% margin improvement on $800K revenue is $24,000 per year.</div>
+        <div class="finding-fix">Job cost tracked against estimate in real time, weekly minimum</div>
+      </div>
+      <div class="finding-card c-blue">
+        <div class="finding-cat">Tool Fragmentation</div>
+        <div class="finding-stat">5+</div>
+        <div class="finding-headline">Tools used per job with little to no integration</div>
+        <div class="finding-body">The average small crew runs across 5+ disconnected apps. Data gets re-entered, things fall through cracks, and the owner becomes the only person who knows where anything stands.</div>
+        <div class="finding-fix">Consolidated system where job data flows — not gets re-entered</div>
+      </div>
+      <div class="finding-card c-yellow">
+        <div class="finding-cat">Key Person Dependency</div>
+        <div class="finding-stat">69%</div>
+        <div class="finding-headline">Business slows or stops when the owner is out</div>
+        <div class="finding-body">When the owner is the operations manual, every absence is a crisis. This dependency limits growth, harms client experience, and makes the business unsellable.</div>
+        <div class="finding-fix">Documented SOPs so any job can run without the owner present</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-cat">Invoice Speed</div>
+        <div class="finding-stat">61%</div>
+        <div class="finding-headline">Wait 2+ weeks to invoice after job completion</div>
+        <div class="finding-body">Delayed invoicing slows cash flow and correlates with higher late-payment rates. Clients question invoices more when the job isn't fresh in memory. Fast invoicing is a trust signal.</div>
+        <div class="finding-fix">Invoice sent within 24 hours of job completion</div>
+      </div>
+      <div class="finding-card c-blue">
+        <div class="finding-cat">Crew Scheduling</div>
+        <div class="finding-stat">48%</div>
+        <div class="finding-headline">Communicate schedules reactively — morning-of or day before</div>
+        <div class="finding-body">Last-minute scheduling creates idle crew time, late starts, and double-handling. When crews don't know what's next, they can't prepare — and the owner spends the morning on calls.</div>
+        <div class="finding-fix">Weekly schedule published every Friday for the following week</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Compounding effect -->
+  <div class="article-section">
+    <div class="section-num"><span>03 /</span> The Compounding Effect</div>
+    <h2>SMALL LEAKS ADD UP FAST</h2>
+    <p class="section-intro">
+      No single gap on this list would put a crew out of business. But every one of them running
+      simultaneously creates a compounding drag that explains why crews stay busy and still feel broke.
+    </p>
+
+    <div class="compound-box">
+      <h3>AVERAGE MONTHLY REVENUE LEAK</h3>
+      <div class="annual-num">$28,800</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase">Estimated Annual Impact Per Crew</div>
+      <div class="compound-math">
+        <div class="math-cell">
+          <div class="num">$2,400</div>
+          <div class="lbl">Monthly Leak</div>
+        </div>
+        <div class="math-op">×</div>
+        <div class="math-cell">
+          <div class="num">12</div>
+          <div class="lbl">Months</div>
+        </div>
+        <div class="math-op">=</div>
+        <div class="math-cell" style="border-color:var(--red)">
+          <div class="num" style="color:var(--red)">$28,800</div>
+          <div class="lbl">Per Year Gone</div>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);max-width:520px;margin:28px auto 0;line-height:1.7">
+        For a crew billing $600K–$900K annually, this represents 3–5% of gross revenue —
+        often the difference between profit and breaking even, hidden not in your rates but in your operation.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 4: Traits -->
+  <div class="article-section">
+    <div class="section-num"><span>04 /</span> What Separates Them</div>
+    <h2>WHAT HIGH-SCORING OPERATIONS HAVE IN COMMON</h2>
+    <p class="section-intro">
+      Crews that score 75+ on the Revenue Leak Scan aren't just better — they're built differently.
+      Three traits show up consistently.
+    </p>
+
+    <div class="traits-grid">
+      <div class="trait-card">
+        <div class="trait-icon">⚙️</div>
+        <h4>SYSTEMS BEFORE TOOLS</h4>
+        <p>High performers build their workflow first, then choose tools that support it. Low scorers buy tools hoping the workflow will follow. It rarely does.</p>
+      </div>
+      <div class="trait-card">
+        <div class="trait-icon">📊</div>
+        <h4>NUMBERS VISIBLE DAILY</h4>
+        <p>They know their job margins in real time. Not at invoicing. Not at tax season. This single habit drives better pricing, faster decisions, and fewer bad jobs.</p>
+      </div>
+      <div class="trait-card">
+        <div class="trait-icon">📋</div>
+        <h4>DOCUMENTED, NOT MEMORIZED</h4>
+        <p>Their operation lives in documents, not in someone's head. When the owner or key person is out, the business runs. That's deliberate design — not luck.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="resource-cta">
+    <span class="eyebrow eyebrow-orange">⚡ Free — Takes 90 Seconds</span>
+    <h2>FIND OUT WHERE YOUR<br>OPERATION STANDS</h2>
+    <p class="sub">
+      The Revenue Leak Scan™ runs your operation through all 11 checkpoints and
+      delivers a personalized score, a breakdown of your exact gaps, and an
+      estimated monthly leak figure — straight to your inbox.
+    </p>
+    <a href="https://audit.structtek.com" class="btn btn-orange btn-lg track-cta">
+      TAKE THE FREE REVENUE LEAK SCAN →
+    </a>
+    <div class="cta-pills">
+      <span class="cta-pill">✓ No credit card</span>
+      <span class="cta-pill">✓ For crews of 1–9</span>
+      <span class="cta-pill">✓ Personalized report</span>
+      <span class="cta-pill">✓ Built for trades</span>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-pill">
+          <img src="/assets/logo.png" alt="StructTech">
+        </div>
+        <p>Operational systems for construction crews of 1–9. We find the leaks and build the systems to close them.</p>
+        <div class="footer-contact">
+          <a href="tel:9374672660">937.467.2660</a>
+          <a href="mailto:jacob@structtek.com">jacob@structtek.com</a>
+          <span>101 W. Broadway St, Unit C<br>Tipp City, OH 45371</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>NAVIGATE</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/operational-audit/">Strategy Call</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>RESOURCES</h4>
+        <ul>
+          <li><a href="/resources/contractor-revenue-leak-report/">Revenue Leak Report</a></li>
+          <li><a href="/resources/custom-operations-systems/">Operations Guide</a></li>
+          <li><a href="/resources/">All Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-cta-col footer-col">
+        <h4>GET STARTED</h4>
+        <p>90-second diagnostic. Free. Shows exactly where your operation is leaking money.</p>
+        <a href="https://audit.structtek.com" class="btn btn-orange btn-sm track-cta">FREE REVENUE LEAK SCAN →</a>
+        <div class="footer-social" style="margin-top:20px;">
+          <a href="https://facebook.com/structtek" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://instagram.com/structtek" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 StructTech LLC · Tipp City, Ohio · All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/main.js"></script>
+</body>
+</html>

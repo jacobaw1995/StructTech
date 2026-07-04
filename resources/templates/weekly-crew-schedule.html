@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Crew Schedule | StructTech Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --orange: #f97316; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #fff; color: #111; font-size: 12px; }
+
+    .print-bar { background: #0f172a; color: #fff; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+    .print-bar a { color: #f97316; text-decoration: none; }
+    .print-btn { background: #f97316; color: #fff; border: none; padding: 7px 18px; border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+    @media print { .print-bar { display: none; } }
+
+    .doc { max-width: 1100px; margin: 0 auto; padding: 32px 24px 60px; }
+
+    .doc-header { border-bottom: 3px solid #f97316; padding-bottom: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .doc-header h1 { font-size: 22px; font-weight: 800; }
+    .doc-header .sub { font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 3px; }
+    .doc-header .brand { font-family: var(--font-mono); font-size: 11px; color: #64748b; text-align: right; }
+
+    .header-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+    .field-group label { display: block; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 4px; }
+    .field-group input, .field-group select {
+      width: 100%; border: 1px solid #e2e8f0; border-radius: 4px;
+      padding: 7px 10px; font-size: 12px; font-family: var(--font-body);
+      background: #f8fafc; color: #111;
+    }
+
+    /* ── Schedule grid ── */
+    .week-grid { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 24px; }
+    .grid-header { display: grid; grid-template-columns: 160px repeat(6, 1fr); }
+    .grid-header .gh-crew { background: #0f172a; color: #fff; padding: 10px 12px; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+    .grid-header .gh-day { background: #0f172a; color: #fff; padding: 10px 8px; text-align: center; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; border-left: 1px solid #1e293b; }
+    .gh-day .day-name { color: #f97316; font-weight: 700; display: block; font-size: 12px; }
+    .gh-day .day-date { color: #94a3b8; font-size: 10px; margin-top: 2px; display: block; }
+
+    .crew-row { display: grid; grid-template-columns: 160px repeat(6, 1fr); border-top: 1px solid #e2e8f0; }
+    .crew-row:hover { background: #fafafa; }
+    .crew-name { background: #f8fafc; padding: 8px 12px; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: center; min-height: 80px; }
+    .crew-name input {
+      border: none; background: transparent; font-size: 13px; font-weight: 600;
+      color: #0f172a; outline: none; width: 100%; font-family: var(--font-body);
+    }
+    .crew-name .cn-role input { font-size: 10px; font-weight: 400; color: #94a3b8; font-family: var(--font-mono); margin-top: 2px; }
+
+    .day-cell {
+      border-left: 1px solid #e2e8f0; padding: 6px 8px;
+      min-height: 80px; display: flex; flex-direction: column; gap: 3px; position: relative;
+    }
+    .day-cell.weekend { background: #f8f9fa; }
+    .day-cell input, .day-cell textarea, .day-cell select {
+      border: none; background: transparent; font-size: 11px;
+      font-family: var(--font-body); color: #334155; outline: none; width: 100%; resize: none;
+    }
+    .day-cell .job-name { font-weight: 600; font-size: 12px; color: #0f172a; }
+    .day-cell .job-addr { font-size: 10px; color: #64748b; font-family: var(--font-mono); }
+    .day-cell .job-hours { font-size: 10px; color: #94a3b8; font-family: var(--font-mono); }
+
+    /* Color coded job blocks */
+    .job-block { border-radius: 4px; padding: 5px 8px; margin-bottom: 3px; }
+    .jb-hvac { background: #fff7ed; border-left: 3px solid #f97316; }
+    .jb-roof { background: #fef2f2; border-left: 3px solid #ef4444; }
+    .jb-elec { background: #fefce8; border-left: 3px solid #eab308; }
+    .jb-plumb { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .jb-conc { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .jb-off { background: #f1f5f9; border-left: 3px solid #94a3b8; }
+    .jb-blank { background: transparent; }
+
+    .jb-title { font-size: 11px; font-weight: 600; color: #0f172a; }
+    .jb-detail { font-size: 10px; color: #475569; font-family: var(--font-mono); margin-top: 1px; }
+
+    .cell-input-mode .day-cell { padding: 0; }
+    .cell-input-mode .day-cell textarea {
+      min-height: 78px; padding: 6px 8px; font-size: 11px; line-height: 1.5;
+    }
+
+    /* Legend */
+    .legend { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }
+    .legend-label { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-right: 4px; }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-family: var(--font-mono); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .ld-hvac { background: #f97316; } .ld-roof { background: #ef4444; }
+    .ld-elec { background: #eab308; } .ld-plumb { background: #3b82f6; }
+    .ld-conc { background: #22c55e; } .ld-off { background: #94a3b8; }
+
+    /* View toggle */
+    .view-toggle { display: flex; gap: 8px; margin-bottom: 16px; }
+    .vt-btn { padding: 6px 16px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; font-family: var(--font-mono); cursor: pointer; background: #f8fafc; }
+    .vt-btn.active { background: #0f172a; color: #fff; border-color: #0f172a; }
+
+    /* Capacity summary */
+    .cap-summary { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 24px; }
+    .cap-day { border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; text-align: center; }
+    .cap-day .cd-name { font-size: 10px; font-family: var(--font-mono); color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
+    .cap-day .cd-util { font-size: 22px; font-weight: 800; }
+    .cap-day .cd-label { font-size: 10px; color: #94a3b8; margin-top: 2px; }
+    .util-high { color: #dc2626; } .util-med { color: #f97316; } .util-low { color: #22c55e; }
+
+    /* Job reference table */
+    .job-ref { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 24px; }
+    .job-ref .jr-header { background: #0f172a; color: #fff; padding: 9px 14px; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; display: flex; justify-content: space-between; align-items: center; }
+    .job-ref-table { width: 100%; border-collapse: collapse; }
+    .job-ref-table th { background: #f1f5f9; padding: 8px 12px; text-align: left; font-size: 10px; font-family: var(--font-mono); color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #e2e8f0; }
+    .job-ref-table td { padding: 7px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; font-size: 12px; }
+    .job-ref-table td input { width: 100%; border: none; background: transparent; font-size: 12px; font-family: var(--font-body); outline: none; }
+    .job-ref-table td select { border: none; background: transparent; font-size: 11px; font-family: var(--font-mono); outline: none; }
+    .trade-pill { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-family: var(--font-mono); font-weight: 700; }
+
+    /* Notes */
+    .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .notes-box { border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    .notes-box .nb-header { background: #f1f5f9; padding: 8px 14px; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #475569; border-bottom: 1px solid #e2e8f0; }
+    .notes-box textarea { width: 100%; border: none; padding: 10px 14px; font-family: var(--font-body); font-size: 12px; color: #111; height: 90px; resize: vertical; background: #fff; }
+
+    .doc-footer { border-top: 1px solid #e2e8f0; padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; }
+    .doc-footer a { color: #f97316; text-decoration: none; }
+
+    @media print {
+      body { font-size: 10px; }
+      .doc { padding: 12px; max-width: 100%; }
+      .day-cell { min-height: 60px; }
+      .view-toggle { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>StructTech · Weekly Crew Schedule · <a href="/resources/">Back to Resources</a></span>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="doc">
+
+  <div class="doc-header">
+    <div>
+      <h1>WEEKLY CREW SCHEDULE</h1>
+      <div class="sub">One page. Every crew member. Every job. Every day.</div>
+    </div>
+    <div class="brand">STRUCTTECH<br>structtek.com</div>
+  </div>
+
+  <!-- Week info -->
+  <div class="header-row">
+    <div class="field-group"><label>Company</label><input type="text" placeholder="Your Company"></div>
+    <div class="field-group"><label>Week Of (Monday)</label><input type="date"></div>
+    <div class="field-group"><label>Week Ending (Saturday)</label><input type="date"></div>
+    <div class="field-group"><label>Posted By</label><input type="text" placeholder="Owner / Dispatcher"></div>
+    <div class="field-group"><label>Total Crew On Roster</label><input type="text" placeholder="0 people"></div>
+  </div>
+
+  <!-- Legend + view toggle -->
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+    <div class="legend">
+      <span class="legend-label">Trade:</span>
+      <div class="legend-item"><div class="legend-dot ld-hvac"></div>HVAC</div>
+      <div class="legend-item"><div class="legend-dot ld-roof"></div>Roofing</div>
+      <div class="legend-item"><div class="legend-dot ld-elec"></div>Electrical</div>
+      <div class="legend-item"><div class="legend-dot ld-plumb"></div>Plumbing</div>
+      <div class="legend-item"><div class="legend-dot ld-conc"></div>Concrete</div>
+      <div class="legend-item"><div class="legend-dot ld-off"></div>Off / Shop</div>
+    </div>
+    <div class="view-toggle">
+      <button class="vt-btn active" onclick="setView('visual', this)">Visual</button>
+      <button class="vt-btn" onclick="setView('input', this)">Free-Type</button>
+    </div>
+  </div>
+
+  <!-- Main schedule grid -->
+  <div class="week-grid" id="main-grid">
+    <div class="grid-header">
+      <div class="gh-crew">CREW MEMBER</div>
+      <div class="gh-day"><span class="day-name">MON</span><span class="day-date"><input type="date" style="background:transparent;border:none;color:#94a3b8;font-size:10px;font-family:var(--font-mono);outline:none;width:100%;"></span></div>
+      <div class="gh-day"><span class="day-name">TUE</span><span class="day-date"><input type="date" style="background:transparent;border:none;color:#94a3b8;font-size:10px;font-family:var(--font-mono);outline:none;width:100%;"></span></div>
+      <div class="gh-day"><span class="day-name">WED</span><span class="day-date"><input type="date" style="background:transparent;border:none;color:#94a3b8;font-size:10px;font-family:var(--font-mono);outline:none;width:100%;"></span></div>
+      <div class="gh-day"><span class="day-name">THU</span><span class="day-date"><input type="date" style="background:transparent;border:none;color:#94a3b8;font-size:10px;font-family:var(--font-mono);outline:none;width:100%;"></span></div>
+      <div class="gh-day"><span class="day-name">FRI</span><span class="day-date"><input type="date" style="background:transparent;border:none;color:#94a3b8;font-size:10px;font-family:var(--font-mono);outline:none;width:100%;"></span></div>
+      <div class="gh-day"><span class="day-name">SAT</span><span class="day-date"><input type="date" style="background:transparent;border:none;color:#94a3b8;font-size:10px;font-family:var(--font-mono);outline:none;width:100%;"></span></div>
+    </div>
+
+    <!-- Crew rows — 8 crew members -->
+    <script>
+    var trades = ['hvac','roof','elec','plumb','conc','off'];
+    var tradeColors = {hvac:'jb-hvac', roof:'jb-roof', elec:'jb-elec', plumb:'jb-plumb', conc:'jb-conc', off:'jb-off'};
+
+    function makeCell(day, crew, isWeekend) {
+      var wkClass = isWeekend ? ' weekend' : '';
+      return '<div class="day-cell' + wkClass + '" data-crew="' + crew + '" data-day="' + day + '">' +
+        '<select onchange="applyColor(this)" style="font-size:9px;margin-bottom:3px;background:transparent;border:1px solid #e2e8f0;border-radius:3px;padding:2px 4px;color:#64748b;">' +
+        '<option value="">Trade...</option>' +
+        '<option value="hvac">HVAC</option><option value="roof">Roofing</option>' +
+        '<option value="elec">Electrical</option><option value="plumb">Plumbing</option>' +
+        '<option value="conc">Concrete</option><option value="off">Off/Shop</option>' +
+        '</select>' +
+        '<input class="job-name" type="text" placeholder="Job / client">' +
+        '<input class="job-addr" type="text" placeholder="Address / site">' +
+        '<input class="job-hours" type="text" placeholder="Hours: e.g. 7am–4pm">' +
+      '</div>';
+    }
+
+    function applyColor(sel) {
+      var val = sel.value;
+      var cell = sel.parentElement;
+      cell.className = 'day-cell' + (cell.classList.contains('weekend') ? ' weekend' : '');
+    }
+
+    var crewNames = [
+      ['[Owner / Foreman]', 'Owner / Lead'],
+      ['[Tech / Installer 1]', 'HVAC Tech'],
+      ['[Tech / Installer 2]', 'Trade Tech'],
+      ['[Apprentice 1]', 'Apprentice'],
+      ['[Sub / Helper]', 'Helper'],
+      ['', ''],['', ''],['', '']
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var grid = document.getElementById('main-grid');
+      crewNames.forEach(function(c, i) {
+        var row = document.createElement('div');
+        row.className = 'crew-row';
+        row.innerHTML = '<div class="crew-name">' +
+          '<input type="text" placeholder="' + (c[0]||'Crew member '+(i+1)) + '" value="' + (i < 5 ? c[0] : '') + '">' +
+          '<div class="cn-role"><input type="text" placeholder="' + (c[1]||'Role / trade') + '" value="' + (i < 5 ? c[1] : '') + '"></div>' +
+        '</div>' +
+        makeCell('mon',i,false) + makeCell('tue',i,false) + makeCell('wed',i,false) +
+        makeCell('thu',i,false) + makeCell('fri',i,false) + makeCell('sat',i,true);
+        grid.appendChild(row);
+      });
+    });
+    </script>
+  </div>
+
+  <!-- Capacity summary -->
+  <div style="margin-bottom:8px;font-size:10px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;color:#64748b;">DAILY CAPACITY SUMMARY</div>
+  <div class="cap-summary">
+    <div class="cap-day"><div class="cd-name">Mon</div><div class="cd-util util-med"><input type="text" style="width:60px;border:none;font-size:22px;font-weight:800;color:inherit;font-family:var(--font-mono);text-align:center;outline:none;" placeholder="—"></div><div class="cd-label">crew out</div></div>
+    <div class="cap-day"><div class="cd-name">Tue</div><div class="cd-util util-med"><input type="text" style="width:60px;border:none;font-size:22px;font-weight:800;color:inherit;font-family:var(--font-mono);text-align:center;outline:none;" placeholder="—"></div><div class="cd-label">crew out</div></div>
+    <div class="cap-day"><div class="cd-name">Wed</div><div class="cd-util util-high"><input type="text" style="width:60px;border:none;font-size:22px;font-weight:800;color:inherit;font-family:var(--font-mono);text-align:center;outline:none;" placeholder="—"></div><div class="cd-label">crew out</div></div>
+    <div class="cap-day"><div class="cd-name">Thu</div><div class="cd-util util-low"><input type="text" style="width:60px;border:none;font-size:22px;font-weight:800;color:inherit;font-family:var(--font-mono);text-align:center;outline:none;" placeholder="—"></div><div class="cd-label">crew out</div></div>
+    <div class="cap-day"><div class="cd-name">Fri</div><div class="cd-util util-low"><input type="text" style="width:60px;border:none;font-size:22px;font-weight:800;color:inherit;font-family:var(--font-mono);text-align:center;outline:none;" placeholder="—"></div><div class="cd-label">crew out</div></div>
+    <div class="cap-day"><div class="cd-name">Sat</div><div class="cd-util util-low"><input type="text" style="width:60px;border:none;font-size:22px;font-weight:800;color:inherit;font-family:var(--font-mono);text-align:center;outline:none;" placeholder="—"></div><div class="cd-label">crew out</div></div>
+  </div>
+
+  <!-- Job reference sheet -->
+  <div class="job-ref">
+    <div class="jr-header">
+      <span>JOB REFERENCE — This Week's Active Jobs</span>
+      <span style="font-weight:400;color:#94a3b8;">Fill in client contact info so crew can call from the field</span>
+    </div>
+    <table class="job-ref-table">
+      <thead>
+        <tr>
+          <th style="width:18%">Job / Client Name</th>
+          <th style="width:20%">Address</th>
+          <th style="width:12%">Client Phone</th>
+          <th style="width:8%">Trade</th>
+          <th style="width:10%">Est. Duration</th>
+          <th style="width:10%">Gate / Access</th>
+          <th style="width:10%">Materials Ready?</th>
+          <th style="width:12%">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><input type="text" placeholder="Smith Residence"></td><td><input type="text" placeholder="123 Main St, Tipp City"></td><td><input type="tel" placeholder="(937) 000-0000"></td><td><select><option>HVAC</option><option>Roofing</option><option>Electrical</option><option>Plumbing</option><option>Concrete</option><option>Other</option></select></td><td><input type="text" placeholder="2 days"></td><td><input type="text" placeholder="Side gate, no dog"></td><td><select><option>Yes ✓</option><option>No — pending</option><option>Partial</option></select></td><td><input type="text" placeholder="Notes..."></td></tr>
+        <tr><td><input type="text" placeholder="Job / client"></td><td><input type="text" placeholder="Address"></td><td><input type="tel" placeholder="(000) 000-0000"></td><td><select><option>HVAC</option><option>Roofing</option><option>Electrical</option><option>Plumbing</option><option>Concrete</option><option>Other</option></select></td><td><input type="text" placeholder="Days"></td><td><input type="text" placeholder="Access info"></td><td><select><option>Yes ✓</option><option>No — pending</option><option>Partial</option></select></td><td><input type="text" placeholder="Notes..."></td></tr>
+        <tr><td><input type="text" placeholder="Job / client"></td><td><input type="text" placeholder="Address"></td><td><input type="tel" placeholder="(000) 000-0000"></td><td><select><option>HVAC</option><option>Roofing</option><option>Electrical</option><option>Plumbing</option><option>Concrete</option><option>Other</option></select></td><td><input type="text" placeholder="Days"></td><td><input type="text" placeholder="Access info"></td><td><select><option>Yes ✓</option><option>No — pending</option><option>Partial</option></select></td><td><input type="text" placeholder="Notes..."></td></tr>
+        <tr><td><input type="text" placeholder="Job / client"></td><td><input type="text" placeholder="Address"></td><td><input type="tel" placeholder="(000) 000-0000"></td><td><select><option>HVAC</option><option>Roofing</option><option>Electrical</option><option>Plumbing</option><option>Concrete</option><option>Other</option></select></td><td><input type="text" placeholder="Days"></td><td><input type="text" placeholder="Access info"></td><td><select><option>Yes ✓</option><option>No — pending</option><option>Partial</option></select></td><td><input type="text" placeholder="Notes..."></td></tr>
+        <tr><td><input type="text" placeholder="Job / client"></td><td><input type="text" placeholder="Address"></td><td><input type="tel" placeholder="(000) 000-0000"></td><td><select><option>HVAC</option><option>Roofing</option><option>Electrical</option><option>Plumbing</option><option>Concrete</option><option>Other</option></select></td><td><input type="text" placeholder="Days"></td><td><input type="text" placeholder="Access info"></td><td><select><option>Yes ✓</option><option>No — pending</option><option>Partial</option></select></td><td><input type="text" placeholder="Notes..."></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Notes -->
+  <div class="bottom-row">
+    <div class="notes-box">
+      <div class="nb-header">Week Notes / Announcements for Crew</div>
+      <textarea placeholder="Safety topics, tool checkout reminders, company announcements, crew meeting time, upcoming PTO, equipment issues, material pickups needed..."></textarea>
+    </div>
+    <div class="notes-box">
+      <div class="nb-header">Open Slots / Available Capacity This Week</div>
+      <textarea placeholder="e.g. Tuesday afternoon is open after Smith job finishes. Thursday crew is light — can take a new call. Saturday available for emergency calls..."></textarea>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Template by <a href="https://structtek.com">StructTech</a> — Free to use and share</span>
+    <span>Post in shop, send to crew Friday afternoon · structtek.com/resources</span>
+  </div>
+
+</div>
+
+<script>
+function setView(mode, btn) {
+  document.querySelectorAll('.vt-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var grid = document.getElementById('main-grid');
+  if (mode === 'input') {
+    grid.classList.add('cell-input-mode');
+    document.querySelectorAll('.day-cell select, .day-cell input:not(.job-name)').forEach(function(el){
+      if(el.tagName === 'SELECT') el.style.display = 'none';
+    });
+  } else {
+    grid.classList.remove('cell-input-mode');
+    document.querySelectorAll('.day-cell select').forEach(function(el){
+      el.style.display = '';
+    });
+  }
+}
+
+// Fix the syntax error in the crew name placeholder
+document.addEventListener('DOMContentLoaded', function() {
+  // Already handled by the script in the HTML above
+  // Additional init can go here
+});
+</script>
+</body>
+</html>

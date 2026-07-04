@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Costing Tracker | StructTech Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #f97316; --blue: #2563eb; --green: #22c55e; --red: #ef4444;
+      --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #fff; color: #111; font-size: 13px; }
+
+    /* Print bar */
+    .print-bar {
+      background: #0f172a; color: #fff; padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px;
+    }
+    .print-bar a { color: #f97316; text-decoration: none; font-size: 12px; }
+    .print-btn {
+      background: #f97316; color: #fff; border: none; padding: 7px 18px;
+      border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer;
+      font-family: var(--font-body);
+    }
+    @media print { .print-bar { display: none; } }
+
+    .doc { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+    .doc-header { border-bottom: 3px solid #f97316; padding-bottom: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .doc-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+    .doc-header .sub { font-size: 12px; color: #64748b; margin-top: 3px; }
+    .doc-header .brand { font-family: var(--font-mono); font-size: 11px; color: #64748b; text-align: right; }
+
+    .period-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+    .field-group label { display: block; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 4px; }
+    .field-group input, .field-group select {
+      width: 100%; border: 1px solid #e2e8f0; border-radius: 4px;
+      padding: 7px 10px; font-size: 13px; font-family: var(--font-body);
+      background: #f8fafc; color: #111;
+    }
+    @media print {
+      .field-group input, .field-group select { background: #fff; }
+    }
+
+    /* Main table */
+    .jobs-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    .jobs-table th {
+      background: #0f172a; color: #fff; padding: 9px 12px; text-align: left;
+      font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 500;
+    }
+    .jobs-table th.num { text-align: right; }
+    .jobs-table td { padding: 8px 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+    .jobs-table td.num { text-align: right; font-family: var(--font-mono); font-size: 12px; }
+    .jobs-table tr:nth-child(even) td { background: #f8fafc; }
+    .jobs-table tr:hover td { background: #fff7ed; }
+    .jobs-table td input {
+      width: 100%; border: none; background: transparent; font-family: var(--font-mono);
+      font-size: 12px; text-align: right; color: #111; outline: none; padding: 0;
+    }
+    .jobs-table td input.left { text-align: left; font-family: var(--font-body); font-size: 13px; }
+    .pos { color: #16a34a; font-weight: 600; }
+    .neg { color: #dc2626; font-weight: 600; }
+    .neutral { color: #64748b; }
+
+    /* Totals row */
+    .totals-row td { background: #0f172a !important; color: #fff; font-weight: 700; font-family: var(--font-mono); font-size: 12px; }
+
+    /* Cost breakdown section */
+    .cost-section { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+    .cost-box { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
+    .cost-box-header { background: #f1f5f9; padding: 10px 16px; font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #475569; border-bottom: 1px solid #e2e8f0; }
+    .cost-box table { width: 100%; border-collapse: collapse; }
+    .cost-box table td { padding: 7px 16px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+    .cost-box table td:last-child { text-align: right; font-family: var(--font-mono); }
+    .cost-box table tr:last-child td { border-bottom: none; font-weight: 600; background: #f8fafc; }
+
+    .notes-section { margin-bottom: 24px; }
+    .notes-section label { display: block; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 6px; }
+    .notes-section textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 10px; font-family: var(--font-body); font-size: 13px; color: #111; height: 80px; resize: vertical; background: #f8fafc; }
+
+    .doc-footer { border-top: 1px solid #e2e8f0; padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; }
+    .doc-footer a { color: #f97316; text-decoration: none; }
+
+    /* Summary dashboard */
+    .summary-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+    .summary-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px; }
+    .summary-card .s-label { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 6px; }
+    .summary-card .s-val { font-size: 26px; font-weight: 700; }
+    .summary-card .s-sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+    .s-orange { color: #f97316; }
+    .s-green { color: #16a34a; }
+    .s-red { color: #dc2626; }
+    .s-blue { color: #2563eb; }
+
+    @media print {
+      body { font-size: 11px; }
+      .doc { padding: 16px; }
+      .jobs-table th, .jobs-table td { padding: 6px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>StructTech · Job Costing Tracker · <a href="/resources/">Back to Resources</a></span>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="doc">
+
+  <div class="doc-header">
+    <div>
+      <h1>JOB COSTING TRACKER</h1>
+      <div class="sub">Track estimated vs. actual cost per job — know your margin before tax season</div>
+    </div>
+    <div class="brand">STRUCTTECH<br>structtek.com</div>
+  </div>
+
+  <!-- Period & company info -->
+  <div class="period-row">
+    <div class="field-group"><label>Company Name</label><input type="text" placeholder="Your Company"></div>
+    <div class="field-group"><label>Trade / Specialty</label><input type="text" placeholder="e.g. HVAC, Roofing"></div>
+    <div class="field-group"><label>Period Start</label><input type="date"></div>
+    <div class="field-group"><label>Period End</label><input type="date"></div>
+  </div>
+
+  <!-- Summary dashboard -->
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="s-label">Total Jobs This Period</div>
+      <div class="s-val s-blue">—</div>
+      <div class="s-sub">add jobs below to calculate</div>
+    </div>
+    <div class="summary-card">
+      <div class="s-label">Total Revenue Billed</div>
+      <div class="s-val s-orange">—</div>
+      <div class="s-sub">sum of all job revenues</div>
+    </div>
+    <div class="summary-card">
+      <div class="s-label">Net Profit / Loss</div>
+      <div class="s-val s-green">—</div>
+      <div class="s-sub">revenue minus all costs</div>
+    </div>
+    <div class="summary-card">
+      <div class="s-label">Avg Job Margin</div>
+      <div class="s-val s-orange">—</div>
+      <div class="s-sub">target: 20–35%</div>
+    </div>
+  </div>
+
+  <!-- Main job log table -->
+  <table class="jobs-table">
+    <thead>
+      <tr>
+        <th style="width:18%">Job Name / Client</th>
+        <th style="width:10%">Trade</th>
+        <th class="num" style="width:11%">Est. Revenue</th>
+        <th class="num" style="width:9%">Labor Est.</th>
+        <th class="num" style="width:9%">Labor Actual</th>
+        <th class="num" style="width:9%">Materials Est.</th>
+        <th class="num" style="width:9%">Materials Actual</th>
+        <th class="num" style="width:8%">Subs / Other</th>
+        <th class="num" style="width:9%">Net Margin $</th>
+        <th class="num" style="width:8%">Margin %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input class="left" type="text" placeholder="e.g. Smith Residence"></td>
+        <td><input class="left" type="text" placeholder="HVAC"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td class="pos"><input type="text" placeholder="—"></td>
+        <td class="pos"><input type="text" placeholder="—"></td>
+      </tr>
+      <tr>
+        <td><input class="left" type="text" placeholder="e.g. Riverside Commercial"></td>
+        <td><input class="left" type="text" placeholder="Elec."></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td><input type="text" placeholder="$0.00"></td>
+        <td class="pos"><input type="text" placeholder="—"></td>
+        <td class="pos"><input type="text" placeholder="—"></td>
+      </tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr><td><input class="left" type="text" placeholder="Job name / client"></td><td><input class="left" type="text"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td class="neutral"><input type="text" placeholder="—"></td><td class="neutral"><input type="text" placeholder="—"></td></tr>
+      <tr class="totals-row">
+        <td colspan="2">PERIOD TOTALS</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Cost breakdown detail -->
+  <div class="cost-section">
+    <div class="cost-box">
+      <div class="cost-box-header">Labor Cost Breakdown — This Period</div>
+      <table>
+        <tr><td>Foreman / Owner Hours</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td>Crew Hours</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td>Overtime</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td>Burden / Payroll Tax (est.)</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td style="font-weight:600">Total Labor</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;font-weight:700;background:#f8fafc"></td></tr>
+      </table>
+    </div>
+    <div class="cost-box">
+      <div class="cost-box-header">Material &amp; Overhead — This Period</div>
+      <table>
+        <tr><td>Materials (direct job cost)</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td>Subcontractors</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td>Equipment / Tool Rental</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td>Fuel / Vehicle</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;background:transparent"></td></tr>
+        <tr><td style="font-weight:600">Total Non-Labor</td><td><input type="text" style="width:100px;border:none;text-align:right;font-family:var(--font-mono);font-size:12px;font-weight:700;background:#f8fafc"></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="notes-section">
+    <label>Period Notes — What drove variances? What to price differently next time?</label>
+    <textarea placeholder="e.g. Smith job ran over on labor because of scope creep — add contingency to similar jobs. Martinez HVAC went over due to unexpected line repair..."></textarea>
+  </div>
+
+  <div class="doc-footer">
+    <span>Template by <a href="https://structtek.com">StructTech</a> — Free to use and share</span>
+    <span>structtek.com/resources · 937.467.2660</span>
+  </div>
+
+</div>
+</body>
+</html>
