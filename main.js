@@ -5,6 +5,9 @@
 (function () {
   'use strict';
 
+  // Lets CSS scope the reveal hidden state to JS-enabled browsers
+  document.documentElement.classList.add('js');
+
   /* ── NAV SCROLL EFFECT ── */
   const nav = document.querySelector('.site-nav');
   if (nav) {
@@ -18,37 +21,47 @@
   /* ── MOBILE NAV TOGGLE ── */
   const toggle = document.querySelector('.nav-toggle');
   const mobileNav = document.querySelector('.nav-mobile');
+  const setNavOpen = (open) => {
+    document.body.classList.toggle('nav-open', open);
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (mobileNav) mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+  const isNavOpen = () => document.body.classList.contains('nav-open');
   if (toggle) {
     toggle.addEventListener('click', () => {
-      document.body.classList.toggle('nav-open');
+      setNavOpen(!isNavOpen());
     });
   }
   // Close on mobile link click
   if (mobileNav) {
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        document.body.classList.remove('nav-open');
+        setNavOpen(false);
       });
     });
   }
   // Close on outside click
   document.addEventListener('click', (e) => {
-    if (document.body.classList.contains('nav-open')) {
+    if (isNavOpen()) {
       if (!nav.contains(e.target) && !mobileNav.contains(e.target)) {
-        document.body.classList.remove('nav-open');
+        setNavOpen(false);
       }
+    }
+  });
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isNavOpen()) {
+      if (toggle) toggle.focus(); // move focus out before the drawer goes aria-hidden
+      setNavOpen(false);
     }
   });
 
   /* ── ACTIVE NAV LINK ── */
-  const path = window.location.pathname;
+  // Compare resolved pathnames; treat /foo/index.html and /foo/ as the same page
+  const normalizePath = (p) => p.replace(/index\.html$/, '');
+  const path = normalizePath(window.location.pathname);
   document.querySelectorAll('.nav-links a, .nav-mobile a').forEach(link => {
-    const href = link.getAttribute('href') || '';
-    const page = path.split('/').pop() || 'index.html';
-    if (
-      (href === 'index.html' && (page === 'index.html' || page === '')) ||
-      (href !== 'index.html' && href !== '' && page === href)
-    ) {
+    if (normalizePath(new URL(link.href).pathname) === path) {
       link.classList.add('active');
     }
   });
