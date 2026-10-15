@@ -941,23 +941,33 @@ body.nav-open .nav-mobile { display: flex; }
 .footer-legal a:hover { color: var(--gray); }
 
 /* ── 19. REVEAL ANIMATIONS ── */
-.reveal {
+/* Hidden state only applies once main.js adds .js to <html>, so content
+   stays visible when JavaScript is blocked or fails to load. */
+.js .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
 }
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-left {
+.js .reveal-left {
   opacity: 0;
   transform: translateX(-24px);
   transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
-.reveal-left.visible {
+.js .reveal-left.visible {
   opacity: 1;
   transform: translateX(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal-left {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ── 20. RESPONSIVE ── */
