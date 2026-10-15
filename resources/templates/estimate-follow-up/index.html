@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Follow-Up Sequence | StructTech Templates</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --orange: #f97316; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #fff; color: #111; font-size: 13px; }
+
+    .print-bar { background: #0f172a; color: #fff; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+    .print-bar a { color: #f97316; text-decoration: none; }
+    .print-btn { background: #f97316; color: #fff; border: none; padding: 7px 18px; border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+    @media print { .print-bar { display: none; } }
+
+    .doc { max-width: 860px; margin: 0 auto; padding: 40px 32px 60px; }
+
+    .doc-header { border-bottom: 3px solid #f97316; padding-bottom: 18px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .doc-header h1 { font-size: 22px; font-weight: 800; }
+    .doc-header .sub { font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 3px; }
+    .doc-header .brand { font-family: var(--font-mono); font-size: 11px; color: #64748b; text-align: right; }
+
+    .intro-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 18px 22px; margin-bottom: 28px; }
+    .intro-box h2 { font-size: 15px; font-weight: 700; color: #c2410c; margin-bottom: 8px; }
+    .intro-box p { font-size: 13px; color: #7c2d12; line-height: 1.65; }
+    .stat-row { display: flex; gap: 24px; margin-top: 14px; flex-wrap: wrap; }
+    .stat-chip { background: #c2410c; color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 12px; font-family: var(--font-mono); font-weight: 700; }
+
+    .info-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+    .field-group label { display: block; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 4px; }
+    .field-group input, .field-group select, .field-group textarea {
+      width: 100%; border: 1px solid #e2e8f0; border-radius: 4px;
+      padding: 7px 10px; font-size: 13px; font-family: var(--font-body); background: #f8fafc; color: #111;
+    }
+    .field-group textarea { min-height: 60px; resize: vertical; }
+
+    /* Touch cards */
+    .touch-card { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 24px; overflow: hidden; }
+    .touch-header { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
+    .touch-day { background: #0f172a; color: #fff; width: 52px; height: 52px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+    .touch-day .d-label { font-size: 9px; font-family: var(--font-mono); letter-spacing: 0.1em; color: #94a3b8; }
+    .touch-day .d-num { font-size: 22px; font-weight: 800; line-height: 1; color: #fff; }
+    .touch-day.day1 { background: #f97316; }
+    .touch-day.day3 { background: #2563eb; }
+    .touch-day.day7 { background: #7c3aed; }
+    .touch-meta { flex: 1; }
+    .touch-meta .tm-title { font-size: 15px; font-weight: 700; }
+    .touch-meta .tm-sub { font-size: 12px; color: #64748b; font-family: var(--font-mono); margin-top: 2px; }
+    .touch-status { display: flex; gap: 8px; }
+    .method-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-family: var(--font-mono); font-weight: 600; }
+    .method-call { background: #dcfce7; color: #15803d; }
+    .method-text { background: #dbeafe; color: #1d4ed8; }
+    .method-email { background: #f3e8ff; color: #6d28d9; }
+
+    .touch-body { padding: 20px; }
+
+    .script-block { margin-bottom: 18px; }
+    .script-label { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .script-label .method-badge { font-size: 10px; padding: 2px 8px; }
+    .script-text {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px 16px;
+      font-size: 13px; line-height: 1.75; color: #1e293b; position: relative;
+    }
+    .script-text em { background: #fef9c3; padding: 0 2px; font-style: normal; font-weight: 600; border-radius: 2px; } /* merge fields */
+    .script-text textarea {
+      width: 100%; border: none; background: transparent; font-family: var(--font-body);
+      font-size: 13px; line-height: 1.75; color: #1e293b; resize: vertical; outline: none; min-height: 100px;
+    }
+    .copy-btn { position: absolute; top: 8px; right: 8px; background: #e2e8f0; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: var(--font-mono); color: #475569; }
+    .copy-btn:hover { background: #cbd5e1; }
+
+    .touch-tips { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 12px 16px; margin-top: 16px; }
+    .touch-tips .tip-title { font-size: 11px; font-family: var(--font-mono); font-weight: 700; color: #15803d; margin-bottom: 6px; }
+    .touch-tips ul { padding-left: 18px; }
+    .touch-tips li { font-size: 12px; color: #166534; line-height: 1.6; }
+
+    /* Tracker table */
+    .tracker-section { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 28px; }
+    .tracker-section .ts-header { background: #0f172a; color: #fff; padding: 10px 16px; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; }
+    .tracker-table { width: 100%; border-collapse: collapse; }
+    .tracker-table th { background: #f1f5f9; padding: 8px 12px; text-align: left; font-size: 10px; font-family: var(--font-mono); color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #e2e8f0; }
+    .tracker-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+    .tracker-table td input { width: 100%; border: none; background: transparent; font-size: 13px; font-family: var(--font-body); outline: none; }
+    .tracker-table td select { border: none; background: transparent; font-size: 12px; font-family: var(--font-mono); outline: none; color: #111; }
+    .tracker-table tr:last-child td { border-bottom: none; }
+
+    .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+    .rule-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; }
+    .rule-box .rb-label { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 8px; }
+    .rule-box p { font-size: 12px; color: #334155; line-height: 1.65; }
+    .rule-box.warn { border-color: #fca5a5; background: #fff5f5; }
+    .rule-box.warn .rb-label { color: #dc2626; }
+    .rule-box.warn p { color: #7f1d1d; }
+
+    .doc-footer { border-top: 1px solid #e2e8f0; padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; }
+    .doc-footer a { color: #f97316; text-decoration: none; }
+    @media print { body { font-size: 11px; } .doc { padding: 16px; } .copy-btn { display: none; } }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>StructTech · Estimate Follow-Up Sequence · <a href="/resources/">Back to Resources</a></span>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="doc">
+
+  <div class="doc-header">
+    <div>
+      <h1>ESTIMATE FOLLOW-UP SEQUENCE</h1>
+      <div class="sub">3-touch system — Day 1, Day 3, Day 7 — with actual message copy</div>
+    </div>
+    <div class="brand">STRUCTTECH<br>structtek.com</div>
+  </div>
+
+  <!-- Why this matters -->
+  <div class="intro-box">
+    <h2>Why most estimates die — and how to fix it in 3 touches</h2>
+    <p>82% of contractors never follow up after sending an estimate. That single gap costs the average crew over $2,800/month in lost revenue. The client didn't say no — they got busy, distracted, or started getting quotes elsewhere. This sequence keeps you in front of them without being pushy. Use it verbatim or adapt it. What matters is that you do it consistently, on schedule, every time.</p>
+    <div class="stat-row">
+      <div class="stat-chip">82% no follow-up</div>
+      <div class="stat-chip">$2,800+/mo avg lost</div>
+      <div class="stat-chip">3 touches = 60%+ conversion rate</div>
+    </div>
+  </div>
+
+  <!-- Estimate info -->
+  <div class="info-row">
+    <div class="field-group"><label>Client Name</label><input type="text" placeholder="First and last name"></div>
+    <div class="field-group"><label>Estimate Sent Date</label><input type="date"></div>
+    <div class="field-group"><label>Estimate Total</label><input type="text" placeholder="$0,000"></div>
+    <div class="field-group"><label>Client Phone</label><input type="tel" placeholder="(937) 000-0000"></div>
+    <div class="field-group"><label>Client Email</label><input type="email" placeholder="client@email.com"></div>
+    <div class="field-group"><label>Job / Scope Summary</label><input type="text" placeholder="e.g. Full HVAC replacement — 3-ton system"></div>
+  </div>
+
+  <!-- ─── TOUCH 1 ─── -->
+  <div class="touch-card">
+    <div class="touch-header">
+      <div class="touch-day day1"><div class="d-label">DAY</div><div class="d-num">1</div></div>
+      <div class="touch-meta">
+        <div class="tm-title">Same-Day Confirmation</div>
+        <div class="tm-sub">Send within 2 hours of delivering the estimate — while it's fresh</div>
+      </div>
+      <div class="touch-status">
+        <span class="method-badge method-text">Text</span>
+        <span class="method-badge method-email">Email</span>
+      </div>
+    </div>
+    <div class="touch-body">
+
+      <div class="script-block">
+        <div class="script-label"><span class="method-badge method-text">TEXT MESSAGE</span> Send first — highest open rate</div>
+        <div class="script-text" style="position:relative;">
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <textarea>Hey [CLIENT FIRST NAME], this is [YOUR NAME] from [COMPANY]. Just wanted to make sure you got the estimate I sent over — the PDF can sometimes land in spam. It's for $[AMOUNT] to cover [JOB SCOPE, e.g. the full HVAC replacement]. Happy to walk through it on a quick call if you have questions. No rush — just let me know!</textarea>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label"><span class="method-badge method-email">EMAIL</span> Subject line matters — keep it human</div>
+        <div class="script-text" style="position:relative;">
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <textarea>SUBJECT: Your estimate from [COMPANY NAME] — quick note
+
+Hey [CLIENT FIRST NAME],
+
+Just following up to make sure my estimate came through okay — sometimes PDFs get filtered into spam.
+
+The proposal covers [JOB SCOPE SUMMARY] at [JOB ADDRESS] for $[AMOUNT]. I've attached it again just in case.
+
+A few things I wanted to highlight:
+- [KEY ITEM 1 — what makes your quote different, e.g. "We're using brand X equipment with a 10-year warranty"]
+- [KEY ITEM 2 — e.g. "I can start as early as [DATE] once approved"]
+- [KEY ITEM 3 — e.g. "Price is locked in for 14 days — materials pricing has been moving"]
+
+No pressure at all — if you have any questions or want to talk through anything, just reply here or call/text me directly at [YOUR PHONE].
+
+[YOUR NAME]
+[COMPANY] | [PHONE] | [WEBSITE]</textarea>
+        </div>
+      </div>
+
+      <div class="touch-tips">
+        <div class="tip-title">✓ Tips for Day 1</div>
+        <ul>
+          <li>Send the text before the email — texts are read first</li>
+          <li>Don't say "just checking in" — give them a reason (spam, PDF issue)</li>
+          <li>Mention 2–3 specifics about the quote, not just the price</li>
+          <li>Keep your phone number visible everywhere — make it easy to call you</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── TOUCH 2 ─── -->
+  <div class="touch-card">
+    <div class="touch-header">
+      <div class="touch-day day3"><div class="d-label">DAY</div><div class="d-num">3</div></div>
+      <div class="touch-meta">
+        <div class="tm-title">Value-Add Follow-Up</div>
+        <div class="tm-sub">72 hours after estimate delivery — give them a reason to respond</div>
+      </div>
+      <div class="touch-status">
+        <span class="method-badge method-call">Call</span>
+        <span class="method-badge method-text">Text</span>
+      </div>
+    </div>
+    <div class="touch-body">
+
+      <div class="script-block">
+        <div class="script-label"><span class="method-badge method-call">PHONE CALL</span> Try the call first — voicemail script below</div>
+        <div class="script-text" style="position:relative;">
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <textarea>LIVE CALL:
+"Hey [CLIENT], this is [NAME] from [COMPANY]. I wanted to follow up on the estimate I sent a few days ago for [JOB SCOPE]. I wanted to see if you had a chance to look it over and if you had any questions — sometimes things come up when people are reviewing it. Do you have a couple minutes to chat?"
+
+---
+
+VOICEMAIL (if no answer):
+"Hey [CLIENT], it's [NAME] from [COMPANY]. I'm just calling to follow up on the [JOB SCOPE] estimate I sent over. I want to make sure you got it and that I answered everything you need to make a decision. Give me a call back at [YOUR PHONE] whenever's good — no rush at all. Thanks, talk soon."</textarea>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label"><span class="method-badge method-text">TEXT — if no call answer</span> Send 1 hour after leaving voicemail</div>
+        <div class="script-text" style="position:relative;">
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <textarea>Hey [CLIENT], left you a voicemail — I know those are easy to miss. I'm following up on the [JOB SCOPE] estimate for $[AMOUNT].
+
+One thing worth knowing: [ADD A VALUE-ADD — e.g. "I have a crew opening the week of [DATE] that would work perfectly for your timeline" OR "material costs in this category have been moving — the current price is locked in through [DATE]"].
+
+Totally fine if you're still thinking it over — just wanted to stay in touch. Text works great if a call isn't convenient.</textarea>
+        </div>
+      </div>
+
+      <div class="touch-tips">
+        <div class="tip-title">✓ Tips for Day 3</div>
+        <ul>
+          <li>Add a value-add reason to respond: schedule opening, price lock, material lead time</li>
+          <li>Don't just say "following up" — give them a specific, real piece of information</li>
+          <li>Calling first signals you're serious; texting after shows you're flexible</li>
+          <li>Don't ask "did you make a decision?" — ask if they have questions</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── TOUCH 3 ─── -->
+  <div class="touch-card">
+    <div class="touch-header">
+      <div class="touch-day day7"><div class="d-label">DAY</div><div class="d-num">7</div></div>
+      <div class="touch-meta">
+        <div class="tm-title">Final Nudge / Close the Loop</div>
+        <div class="tm-sub">One week out — either close the deal or release the lead cleanly</div>
+      </div>
+      <div class="touch-status">
+        <span class="method-badge method-text">Text</span>
+        <span class="method-badge method-email">Email</span>
+      </div>
+    </div>
+    <div class="touch-body">
+
+      <div class="script-block">
+        <div class="script-label"><span class="method-badge method-text">TEXT — Keep it short. This is your close.</span></div>
+        <div class="script-text" style="position:relative;">
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <textarea>Hey [CLIENT], [NAME] here from [COMPANY]. Last follow-up on the [JOB SCOPE] estimate — I don't want to keep bothering you.
+
+If now isn't the right time, totally understand. If you're ready to move forward or want to talk through it, I've got a spot open [DATE OPTION] and can get started quickly.
+
+Either way — just let me know where you're at and I'll get out of your inbox. 👍</textarea>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label"><span class="method-badge method-email">EMAIL — Alternative to text on Day 7</span></div>
+        <div class="script-text" style="position:relative;">
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <textarea>SUBJECT: Last check-in on your [JOB SCOPE] estimate
+
+Hey [CLIENT],
+
+I don't want to keep filling up your inbox, so this is my last follow-up on the estimate for [JOB SCOPE].
+
+If timing or budget shifted, I get it — things change. I'm always happy to revisit the scope if you need to adjust.
+
+If you're still considering it, here's where things stand:
+- The estimate is valid through [DATE — usually 30 days from send]
+- I have crew availability starting [DATE] that would work well for this job
+- Once we get approval, we can usually begin within [X] business days
+
+If you've already decided to go another direction, no worries at all — just reply and let me know so I can close it out on my end.
+
+Either way, I appreciate you taking the time to get a quote from us.
+
+[YOUR NAME]
+[COMPANY] | [PHONE]</textarea>
+        </div>
+      </div>
+
+      <div class="touch-tips">
+        <div class="tip-title">✓ Tips for Day 7</div>
+        <ul>
+          <li>"Last follow-up" language removes pressure and actually gets more responses</li>
+          <li>Give them a clean way to say no — it closes the loop and they respect you for it</li>
+          <li>If they say "not right now," reply: "No problem — when would be a better time to reconnect?" Then set a reminder.</li>
+          <li>After Day 7, move the lead to "follow-up in 30 days" — not dead, just cool</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lead tracker -->
+  <div class="tracker-section">
+    <div class="ts-header">ESTIMATE FOLLOW-UP TRACKER — This Month</div>
+    <table class="tracker-table">
+      <thead>
+        <tr>
+          <th>Client Name</th>
+          <th>Estimate $</th>
+          <th>Sent Date</th>
+          <th>Day 1 ✓</th>
+          <th>Day 3 ✓</th>
+          <th>Day 7 ✓</th>
+          <th>Status</th>
+          <th>Next Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><input type="text" placeholder="Client name"></td><td><input type="text" placeholder="$0,000"></td><td><input type="date"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td><select><option>Pending</option><option>Won</option><option>Lost</option><option>Follow 30d</option></select></td><td><input type="text" placeholder="Next step"></td></tr>
+        <tr><td><input type="text" placeholder="Client name"></td><td><input type="text" placeholder="$0,000"></td><td><input type="date"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td><select><option>Pending</option><option>Won</option><option>Lost</option><option>Follow 30d</option></select></td><td><input type="text" placeholder="Next step"></td></tr>
+        <tr><td><input type="text" placeholder="Client name"></td><td><input type="text" placeholder="$0,000"></td><td><input type="date"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td><select><option>Pending</option><option>Won</option><option>Lost</option><option>Follow 30d</option></select></td><td><input type="text" placeholder="Next step"></td></tr>
+        <tr><td><input type="text" placeholder="Client name"></td><td><input type="text" placeholder="$0,000"></td><td><input type="date"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td><select><option>Pending</option><option>Won</option><option>Lost</option><option>Follow 30d</option></select></td><td><input type="text" placeholder="Next step"></td></tr>
+        <tr><td><input type="text" placeholder="Client name"></td><td><input type="text" placeholder="$0,000"></td><td><input type="date"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td><select><option>Pending</option><option>Won</option><option>Lost</option><option>Follow 30d</option></select></td><td><input type="text" placeholder="Next step"></td></tr>
+        <tr><td><input type="text" placeholder="Client name"></td><td><input type="text" placeholder="$0,000"></td><td><input type="date"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td style="text-align:center"><input type="checkbox" style="accent-color:#f97316"></td><td><select><option>Pending</option><option>Won</option><option>Lost</option><option>Follow 30d</option></select></td><td><input type="text" placeholder="Next step"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ground rules -->
+  <div class="rules-grid">
+    <div class="rule-box">
+      <div class="rb-label">The Rules That Make This Work</div>
+      <p>Send Day 1 within 2 hours of the estimate. Schedule Day 3 and Day 7 reminders the same day you send the estimate — before you forget. Use the actual copy above; it's tested. Adapt the merge fields [IN BRACKETS] to your specific job.</p>
+    </div>
+    <div class="rule-box warn">
+      <div class="rb-label">Stop Doing These Things</div>
+      <p>Don't say "just following up." Don't send three emails in a row without calling. Don't apologize for reaching out. Don't give up after one touch. And don't forget to log responses — the tracker above is your system.</p>
+    </div>
+    <div class="rule-box">
+      <div class="rb-label">After Day 7 — What Comes Next</div>
+      <p>If no response: set a 30-day reminder to re-engage. If they say "not yet": ask when to circle back and put it in your calendar. If they say no: ask why — that data makes your next estimate better.</p>
+    </div>
+    <div class="rule-box">
+      <div class="rb-label">When They Say Yes — Move Fast</div>
+      <p>When a lead responds positively, respond within 2 hours with next steps. Confirm start date, deposit, and what they need to provide. Speed at conversion is the difference between a signed deal and "we went with someone else."</p>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Template by <a href="https://structtek.com">StructTech</a> — Free to use and share</span>
+    <span>structtek.com/resources · 937.467.2660</span>
+  </div>
+
+</div>
+
+<script>
+function copyText(btn) {
+  var ta = btn.parentElement.querySelector('textarea');
+  if (!ta) return;
+  ta.select();
+  document.execCommand('copy');
+  btn.textContent = 'Copied!';
+  setTimeout(function(){ btn.textContent = 'Copy'; }, 2000);
+}
+</script>
+</body>
+</html>

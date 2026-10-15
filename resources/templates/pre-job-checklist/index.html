@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Job Material Checklist | StructTech Templates</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --orange: #f97316; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #fff; color: #111; font-size: 13px; }
+
+    .print-bar { background: #0f172a; color: #fff; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+    .print-bar a { color: #f97316; text-decoration: none; }
+    .print-btn { background: #f97316; color: #fff; border: none; padding: 7px 18px; border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+    @media print { .print-bar { display: none; } }
+
+    .doc { max-width: 820px; margin: 0 auto; padding: 40px 32px 60px; }
+
+    .doc-header { border-bottom: 3px solid #f97316; padding-bottom: 18px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .doc-header h1 { font-size: 22px; font-weight: 800; letter-spacing: 0.01em; }
+    .doc-header .sub { font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 3px; }
+    .doc-header .brand { font-family: var(--font-mono); font-size: 11px; color: #64748b; text-align: right; }
+
+    .info-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+    .field-group label { display: block; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 4px; }
+    .field-group input, .field-group select, .field-group textarea {
+      width: 100%; border: 1px solid #e2e8f0; border-radius: 4px;
+      padding: 7px 10px; font-size: 13px; font-family: var(--font-body);
+      background: #f8fafc; color: #111;
+    }
+
+    .section-label {
+      background: #0f172a; color: #fff; padding: 8px 14px;
+      font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 14px; margin-top: 26px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .section-label span { font-size: 11px; color: #94a3b8; font-weight: 400; }
+
+    /* Checklist */
+    .check-list { margin-bottom: 6px; }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 12px; border-bottom: 1px solid #f1f5f9;
+      cursor: pointer; transition: background 0.1s;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item:hover { background: #fff7ed; }
+    .check-item input[type="checkbox"] { accent-color: #f97316; width: 15px; height: 15px; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
+    .check-item .ci-text { flex: 1; }
+    .check-item .ci-title { font-size: 13px; font-weight: 500; display: block; }
+    .check-item .ci-note { font-size: 11px; color: #64748b; margin-top: 2px; font-family: var(--font-mono); }
+    .check-item .ci-qty { font-family: var(--font-mono); font-size: 12px; color: #94a3b8; flex-shrink: 0; padding-top: 1px; }
+
+    /* Trade tabs */
+    .trade-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .trade-tab {
+      padding: 6px 16px; border: 2px solid #e2e8f0; border-radius: 20px;
+      font-size: 12px; font-family: var(--font-mono); cursor: pointer;
+      background: #fff; color: #64748b; transition: all 0.15s;
+    }
+    .trade-tab:hover, .trade-tab.active { background: #0f172a; border-color: #0f172a; color: #fff; }
+    .trade-section { display: none; }
+    .trade-section.visible { display: block; }
+
+    /* Custom rows */
+    .custom-add { margin-top: 6px; display: flex; gap: 8px; }
+    .custom-add input { flex: 1; border: 1px dashed #cbd5e1; border-radius: 4px; padding: 7px 10px; font-size: 13px; font-family: var(--font-body); background: #f8fafc; color: #111; }
+    .custom-add button { background: #f97316; color: #fff; border: none; padding: 7px 14px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); white-space: nowrap; }
+
+    /* Status badges */
+    .status-legend { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .status-badge { display: flex; align-items: center; gap: 6px; font-size: 11px; font-family: var(--font-mono); color: #64748b; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-green { background: #22c55e; } .dot-yellow { background: #eab308; } .dot-red { background: #ef4444; }
+
+    /* Notes */
+    .notes-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .notes-box { border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    .notes-box .nb-header { background: #f1f5f9; padding: 8px 14px; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #475569; border-bottom: 1px solid #e2e8f0; }
+    .notes-box textarea { width: 100%; border: none; padding: 10px 14px; font-family: var(--font-body); font-size: 13px; color: #111; height: 80px; resize: vertical; background: #fff; }
+
+    /* Sign-off */
+    .signoff { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-top: 1px solid #e2e8f0; padding-top: 24px; margin-top: 28px; }
+    .signoff .so-label { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 24px; }
+    .sig-line { border-bottom: 1px solid #111; height: 30px; margin-bottom: 5px; }
+    .sig-sub { font-size: 11px; color: #64748b; }
+
+    .doc-footer { border-top: 1px solid #e2e8f0; padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-top: 28px; }
+    .doc-footer a { color: #f97316; text-decoration: none; }
+    @media print { body { font-size: 11px; } .doc { padding: 16px; } .trade-tabs { display: none; } .trade-section { display: block !important; } }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>StructTech · Pre-Job Material Checklist · <a href="/resources/">Back to Resources</a></span>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="doc">
+
+  <div class="doc-header">
+    <div>
+      <h1>PRE-JOB MATERIAL CHECKLIST</h1>
+      <div class="sub">Complete before every job. Never pull onto a site unprepared again.</div>
+    </div>
+    <div class="brand">STRUCTTECH<br>structtek.com</div>
+  </div>
+
+  <!-- Job info -->
+  <div class="info-row">
+    <div class="field-group"><label>Job / Client Name</label><input type="text" placeholder="Smith Residence"></div>
+    <div class="field-group"><label>Job Address</label><input type="text" placeholder="123 Main St"></div>
+    <div class="field-group"><label>Start Date</label><input type="date"></div>
+    <div class="field-group"><label>Foreman / Lead</label><input type="text" placeholder="Name"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px;">
+    <div class="field-group"><label>Trade</label>
+      <select id="trade-select" onchange="setTrade(this.value)">
+        <option value="hvac">HVAC</option>
+        <option value="roofing">Roofing</option>
+        <option value="electrical">Electrical</option>
+        <option value="plumbing">Plumbing</option>
+        <option value="concrete">Concrete / Flatwork</option>
+        <option value="general">General / Custom</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Job Type</label><input type="text" placeholder="e.g. Replacement, New Install, Repair"></div>
+    <div class="field-group"><label>Estimated Hours on Site</label><input type="text" placeholder="e.g. 6 hrs"></div>
+  </div>
+
+  <!-- Trade tabs -->
+  <div class="trade-tabs">
+    <div class="trade-tab active" onclick="setTrade('hvac', this)">HVAC</div>
+    <div class="trade-tab" onclick="setTrade('roofing', this)">Roofing</div>
+    <div class="trade-tab" onclick="setTrade('electrical', this)">Electrical</div>
+    <div class="trade-tab" onclick="setTrade('plumbing', this)">Plumbing</div>
+    <div class="trade-tab" onclick="setTrade('concrete', this)">Concrete</div>
+    <div class="trade-tab" onclick="setTrade('general', this)">Custom / General</div>
+  </div>
+
+  <!-- ─── HVAC ─── -->
+  <div class="trade-section visible" id="trade-hvac">
+    <div class="section-label">EQUIPMENT &amp; UNITS <span>Check when confirmed loaded on truck</span></div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Condenser / outdoor unit</span><span class="ci-note">Confirm tonnage matches job specs before loading</span></div><div class="ci-qty">Unit: ___</div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Air handler / furnace / evaporator coil</span><span class="ci-note">Match to condenser — no mismatched SEER ratings</span></div><div class="ci-qty">Unit: ___</div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Thermostat (smart or standard per quote)</span><span class="ci-note">Confirm compatibility with system type</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Disconnect box</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Condensate pump / drain line kit</span></div></label>
+    </div>
+
+    <div class="section-label">REFRIGERANT &amp; CHEMICALS <span>Check quantities vs. job scope</span></div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Refrigerant (R-410A or R-454B per system)</span><span class="ci-note">Quantity: ___ lbs — verify tech has EPA 608 cert</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Nitrogen for pressure testing</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Leak sealant / UV dye</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Coil cleaner</span></div></label>
+    </div>
+
+    <div class="section-label">LINE SET, ELECTRICAL &amp; CONNECTIONS</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Lineset — copper (pre-charged or roll)</span><span class="ci-note">Length: ___ ft · Size: ___ / ___ inch</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Low-voltage thermostat wire (18/5 or 18/8)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Electrical whip / flex connector</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Breakers for load center</span><span class="ci-note">Confirm amperage requirement with equipment spec sheet</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Lineset insulation / armaflex</span></div></label>
+    </div>
+
+    <div class="section-label">TOOLS &amp; EQUIPMENT ON TRUCK</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Manifold gauge set + hoses</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Vacuum pump (with fresh oil)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Leak detector (electronic)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Multimeter + clamp meter</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Drill + hole saw set</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Pipe bender / tube cutter + flaring tool</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Torque wrench (for flare fittings)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Pad + mounting hardware for condenser</span></div></label>
+    </div>
+  </div>
+
+  <!-- ─── Roofing ─── -->
+  <div class="trade-section" id="trade-roofing">
+    <div class="section-label">MATERIALS <span>Match to job quote before loading</span></div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Shingles (confirmed color + qty in squares)</span><span class="ci-note">Squares: ___ · Color: ___________</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Underlayment (synthetic or felt)</span><span class="ci-note">Rolls: ___</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Ice &amp; water shield</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Ridge cap / hip shingles</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Drip edge (color matches or per spec)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Flashing — step, counter, valley</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Vents (ridge, soffit, box) per attic calc</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Roofing nails (coil or stick — confirm gun type)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Roof deck / OSB for decking replacement</span><span class="ci-note">Sheets: ___ (add 10% for waste)</span></div></label>
+    </div>
+
+    <div class="section-label">SAFETY &amp; TOOLS</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Fall protection — harness, lanyard, anchor</span><span class="ci-note">Required for slopes 4:12 or greater</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Roof brackets + planks for staging</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Coil nailer (charged, extra coils)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Shingle cutter / hook blades (fresh)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Chalk line + squares</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Pry bars + flatbar for tear-off</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Dumpster / haul container scheduled &amp; on site</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Tarp for weather protection (in case of delay)</span></div></label>
+    </div>
+
+    <div class="section-label">SITE &amp; PERMITS</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Permit pulled and posted (if required)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">HOA / neighborhood approval (if applicable)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Property walkthrough — note existing damage before tear-off</span><span class="ci-note">Photo documentation recommended</span></div></label>
+    </div>
+  </div>
+
+  <!-- ─── Electrical ─── -->
+  <div class="trade-section" id="trade-electrical">
+    <div class="section-label">MATERIALS &amp; SUPPLIES</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Wire / conductor (type + gauge + quantity)</span><span class="ci-note">Type: ___ · Gauge: ___ AWG · Feet: ___</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Breakers (correct amperage + brand for panel)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Outlets, switches, covers (quantity + type)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">GFCI / AFCI outlets and breakers as required</span><span class="ci-note">Kitchen, bath, garage, outdoor — required by NEC</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Junction boxes, work boxes, covers</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Conduit (EMT, flex, PVC) + fittings</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Wire connectors, wire nuts, tape</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Panel / subpanel (if service or panel work)</span></div></label>
+    </div>
+
+    <div class="section-label">TOOLS &amp; TEST EQUIPMENT</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Multimeter (calibrated, fresh batteries)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Non-contact voltage tester</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Wire stripper / crimper</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Fish tape / conduit snake</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Hole saw set (wood + metal)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">GFCI tester</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Circuit breaker finder</span></div></label>
+    </div>
+
+    <div class="section-label">PERMITS &amp; CODE</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Permit pulled — number: ___________</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Code compliance reviewed (NEC + local amendments)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Inspection scheduled (rough-in before close-up)</span></div></label>
+    </div>
+  </div>
+
+  <!-- ─── Plumbing ─── -->
+  <div class="trade-section" id="trade-plumbing">
+    <div class="section-label">PIPES, FITTINGS &amp; SUPPLIES</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Pipe (type + diameter + length)</span><span class="ci-note">Type: PEX / CPVC / Copper / PVC · Size: ___ · Feet: ___</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Fittings (elbows, tees, couplings) — match pipe type</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Valves — shut-off, ball, angle (sizes: ___)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Fixture (if replacing) — confirmed with client</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Wax ring, bolts, supply lines (toilet work)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">P-trap, drain components (sink/shower work)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Teflon tape, pipe dope / sealant</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">PEX expansion rings / cinch clamps + tool</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Flux, solder + torch (for copper)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Water heater anode rod (if water heater job)</span></div></label>
+    </div>
+
+    <div class="section-label">TOOLS</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Pipe cutter (tubing cutter + reciprocating saw)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Pipe wrench set (multiple sizes)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">PEX expansion / crimp tool</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Drain snake / auger</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Leak detection spray</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Pressure gauge for testing</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Bucket + wet/dry shop vac</span></div></label>
+    </div>
+  </div>
+
+  <!-- ─── Concrete ─── -->
+  <div class="trade-section" id="trade-concrete">
+    <div class="section-label">MATERIALS</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Concrete / ready-mix ordered — cubic yards: ___</span><span class="ci-note">Confirm delivery time + access route with driver</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Rebar or wire mesh (confirm spacing requirement)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Rebar chairs / mesh supports</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Expansion joint material (fiber board)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Form boards + stakes</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Curing compound or plastic sheeting</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Release agent (if using forms)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Color/pigment/stain additive (if specified)</span></div></label>
+    </div>
+
+    <div class="section-label">TOOLS &amp; EQUIPMENT</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Screeds (bull float + hand float + fresno)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Concrete vibrator (rental or owned)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Edging tool + groover / jointing tool</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Wheelbarrows + rakes + shovels</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Laser level or transit level</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Cut-off saw + blades (for joints)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Water hose / access to water on site</span></div></label>
+    </div>
+
+    <div class="section-label">SITE PREP</div>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Sub-base compacted and graded</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Forms set and leveled (confirm elevation)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Drainage / slope verified (min. 2% grade away from structure)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Permit inspected (pre-pour inspection if required)</span></div></label>
+    </div>
+  </div>
+
+  <!-- ─── General ─── -->
+  <div class="trade-section" id="trade-general">
+    <div class="section-label">GENERAL JOB PREPARATION <span>Customize for your trade below</span></div>
+    <div class="check-list" id="custom-check-list">
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">All materials confirmed loaded on truck/van</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">All tools confirmed on truck/van</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Permit pulled (if required)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Client contacted — arrival time confirmed</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Access confirmed (gate code, key, lockbox)</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Job binder / signed estimate on truck</span></div></label>
+      <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Safety equipment loaded (PPE, first aid, cones)</span></div></label>
+    </div>
+    <div class="custom-add" id="custom-add-row">
+      <input type="text" id="custom-input" placeholder="Add a custom checklist item..." onkeydown="if(event.key==='Enter'){addCustomItem();}">
+      <button onclick="addCustomItem()">+ Add Item</button>
+    </div>
+  </div>
+
+  <!-- Universal bottom sections always visible -->
+  <div class="section-label" style="margin-top:32px;">UNIVERSAL — EVERY JOB, EVERY TIME</div>
+  <div class="check-list">
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Signed estimate / contract on truck (digital or paper)</span></div></label>
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Emergency contact number for client confirmed</span></div></label>
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Crew briefed on scope before arrival</span><span class="ci-note">Everyone knows what they're doing before the truck door opens</span></div></label>
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Site access confirmed — gate codes, parking, lockbox</span></div></label>
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">PPE loaded — gloves, glasses, boots, hard hat</span></div></label>
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">First aid kit on truck</span></div></label>
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Camera / phone charged (for pre/post job photos)</span></div></label>
+    <label class="check-item"><input type="checkbox"><div class="ci-text"><span class="ci-title">Change order forms loaded</span><span class="ci-note">Don't do unpaid work — have the paperwork ready</span></div></label>
+  </div>
+
+  <!-- Notes -->
+  <div class="notes-row" style="margin-top:28px;">
+    <div class="notes-box">
+      <div class="nb-header">Pre-Job Notes / Special Conditions</div>
+      <textarea placeholder="Anything unusual about this job: site access challenges, material lead items, sub coordination, HOA restrictions, client requests, known scope risks..."></textarea>
+    </div>
+    <div class="notes-box">
+      <div class="nb-header">Missing Items / Outstanding Before Job Can Start</div>
+      <textarea placeholder="What's not yet confirmed? e.g. Waiting on permit, material backordered, client needs to confirm color selection..."></textarea>
+    </div>
+  </div>
+
+  <!-- Sign-off -->
+  <div class="signoff">
+    <div>
+      <div class="so-label">FOREMAN / LEAD SIGN-OFF</div>
+      <div class="sig-line"></div>
+      <div class="sig-sub">Signature — I confirm all items above checked prior to dispatch</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
+        <div class="field-group"><label>Printed Name</label><input type="text"></div>
+        <div class="field-group"><label>Sign-Off Date/Time</label><input type="datetime-local"></div>
+      </div>
+    </div>
+    <div>
+      <div class="so-label">OWNER / DISPATCHER CONFIRM</div>
+      <div class="sig-line"></div>
+      <div class="sig-sub">Optional — Owner confirmation before truck rolls</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
+        <div class="field-group"><label>Printed Name</label><input type="text"></div>
+        <div class="field-group"><label>Confirmed</label><input type="datetime-local"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Template by <a href="https://structtek.com">StructTech</a> — Free to use and share</span>
+    <span>structtek.com/resources · 937.467.2660</span>
+  </div>
+
+</div>
+
+<script>
+function setTrade(trade, tab) {
+  document.querySelectorAll('.trade-section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.trade-tab').forEach(t => t.classList.remove('active'));
+  var section = document.getElementById('trade-' + trade);
+  if (section) section.classList.add('visible');
+  if (tab) tab.classList.add('active');
+  var sel = document.getElementById('trade-select');
+  if (sel) sel.value = trade;
+}
+function addCustomItem() {
+  var input = document.getElementById('custom-input');
+  var text = input.value.trim();
+  if (!text) return;
+  var list = document.getElementById('custom-check-list');
+  var item = document.createElement('label');
+  item.className = 'check-item';
+  item.innerHTML = '<input type="checkbox"><div class="ci-text"><span class="ci-title">' + text + '</span></div>';
+  list.appendChild(item);
+  input.value = '';
+  input.focus();
+}
+</script>
+</body>
+</html>
