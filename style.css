@@ -995,3 +995,20 @@ body.nav-open .nav-mobile { display: flex; }
   .booking-guarantee { padding: 20px; }
   .calendly-placeholder { padding: 40px 24px; }
 }
+
+/* ── 21. LEGAL PAGES ── */
+.legal-copy {
+  max-width: var(--max-w-text);
+}
+.legal-copy p {
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.legal-copy a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal-copy a:hover { color: var(--orange-hl); }
