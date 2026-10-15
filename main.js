@@ -107,7 +107,7 @@
   document.querySelectorAll('a[href*="audit.structtek.com"], .track-cta').forEach(el => {
     el.addEventListener('click', () => {
       if (typeof fbq !== 'undefined') {
-        fbq('track', 'Lead', { content_name: 'Scan CTA Click', content_category: 'Main Site' });
+        fbq('trackCustom', 'ScanCTAClick', { content_name: 'Scan CTA Click', content_category: 'Main Site' });
       }
       if (typeof gtag !== 'undefined') {
         gtag('event', 'cta_click', { event_category: 'engagement', event_label: 'scan_cta' });
