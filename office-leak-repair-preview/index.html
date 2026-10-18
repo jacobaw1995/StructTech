@@ -118,7 +118,9 @@
     .hero-under{font-size:14px;color:var(--rule);margin-top:12px}
     .hero-side{margin-top:36px}
     /* Mobile: keep the subhead below the fold (only eyebrow, H1, $144k line, button above it) */
-    @media (max-width:1023px){.hero-copy{min-height:calc(100vh - 92px);min-height:calc(100svh - 92px)}}
+    @media (max-width:767px){.hero-copy{min-height:calc(100vh - 92px);min-height:calc(100svh - 92px)}}
+    /* Tablet: single column, subhead in the navy panel right under the button */
+    @media (min-width:768px){.hero-side{background:var(--navy);border-radius:12px;padding:28px 32px;max-width:680px}}
     .subhead{font-family:var(--display);font-weight:800;font-size:28px;line-height:1.12;margin-bottom:14px}
     .subhead .amb{color:var(--amber)}
     @media (min-width:1024px){
