@@ -118,7 +118,9 @@
     .hero-under{font-size:14px;color:var(--rule);margin-top:12px}
     .hero-side{margin-top:36px}
     /* Mobile: keep the subhead below the fold (only eyebrow, H1, $144k line, button above it) */
-    @media (max-width:1023px){.hero-copy{min-height:calc(100vh - 92px);min-height:calc(100svh - 92px)}}
+    @media (max-width:767px){.hero-copy{min-height:calc(100vh - 92px);min-height:calc(100svh - 92px)}}
+    /* Tablet: single column, subhead in the navy panel right under the button */
+    @media (min-width:768px){.hero-side{background:var(--navy);border-radius:12px;padding:28px 32px;max-width:680px}}
     .subhead{font-family:var(--display);font-weight:800;font-size:28px;line-height:1.12;margin-bottom:14px}
     .subhead .amb{color:var(--amber)}
     @media (min-width:1024px){
@@ -261,9 +263,9 @@
   window.OLR_CONFIG = {
     spots_left:    "",   // e.g. "3"
     next_start:    "",   // e.g. "Mon Nov 2" (ET)
-    founder_price: "",   // e.g. "$X,XXX"
-    split_pay:     "",   // amount per payment, e.g. "$X,XXX"
-    step_up_price: "",   // price for the next five, e.g. "$X,XXX"
+    founder_price: "$1,900",
+    split_pay:     "2 x $5,225", // full text after "or split pay:"
+    step_up_price: "$3,800", // price for the next five
     jacob_photo:   ""    // e.g. "jacob-walker.webp" (square, in this folder)
   };
 </script>
@@ -453,7 +455,7 @@
         <li><span class="lbl">What’s in the stack:</span> the 5 systems + 3 bonuses (<span class="draft-tag">DRAFT</span> $1,250 in bonus value) + 3 guarantees</li>
       </ul>
       <p class="price-line">Plug in your own numbers. This install: $9,500 once.</p>
-      <p class="price-sub">or split pay: 2 × <span data-cfg="split_pay"></span></p>
+      <p class="price-sub">or split pay: <span data-cfg="split_pay" data-blank="2 × $_____"></span></p>
       <div class="founding">
         <h3>Founding install: <span data-cfg="founder_price"></span>, paid in full · 3 spots</h3>
         <p>Founders share their before/after system numbers (named or anonymous), give an honest Day-30 debrief, and are OK being asked for 2 intros.</p>
