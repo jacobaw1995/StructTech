@@ -15,7 +15,7 @@
 
   <meta property="og:title" content="The 30-Day Office Leak Repair · StructTech">
   <meta property="og:description" content="Roofing owners with crews of 1–9: we install the office system that catches leads, follows estimates, locks jobs, and collects payments. Start with a free scan.">
-  <meta property="og:image" content="https://structtek.com/office-leak-repair-preview/og-image.jpg">
+  <meta property="og:image" content="https://structtek.com/assets/og-office-leak-repair.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Running job to job and still not sure what's left at the end of the month? Free Revenue Leak Scan. StructTech.">
@@ -134,7 +134,7 @@
     .leak-box{background:var(--amber-soft);color:var(--ink);border-radius:12px;padding:24px 20px;max-width:520px;border:2px solid var(--amber)}
     .leak-label{font-family:var(--semi);font-weight:600;font-size:14px;letter-spacing:.08em;margin-bottom:6px}
     .leak-big{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;margin-bottom:10px}
-    .leak-box .fine{margin-bottom:4px}
+    .leak-box .fine{margin-bottom:4px;color:#4E5B6B;font-size:15px;opacity:1}
     .leak-row{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--rule);margin-top:14px;padding-top:12px;font-family:var(--semi);font-weight:600;font-size:17px}
     .text-btn{display:inline-flex;align-items:center;min-height:48px;margin-top:8px;font-family:var(--semi);font-weight:600;font-size:17px;color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 
@@ -259,11 +259,11 @@
 <!-- ═══ CONFIG (Jacob supplies these; empty = blank with a DRAFT tag) ═══ -->
 <script>
   window.OLR_CONFIG = {
-    spots_left:    "3",  // e.g. "3"
-    next_start:    "Nov 1", // ET (Jacob, Oct 18)
-    founder_price: "$1,900", // locked by Jacob Oct 18
-    split_pay:     "$5,000", // per payment, 2 payments (Jacob, Oct 18)
-    step_up_price: "$4,200", // next five installs (Jacob, Oct 18)
+    spots_left:    "",   // e.g. "3"
+    next_start:    "",   // e.g. "Mon Nov 2" (ET)
+    founder_price: "",   // e.g. "$X,XXX"
+    split_pay:     "",   // amount per payment, e.g. "$X,XXX"
+    step_up_price: "",   // price for the next five, e.g. "$X,XXX"
     jacob_photo:   ""    // e.g. "jacob-walker.webp" (square, in this folder)
   };
 </script>
@@ -289,7 +289,7 @@
 <section class="hero sec-deep" aria-labelledby="h1">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Roofing owners (1-9 crew)</p>
+      <p class="eyebrow">ROOFING OWNERS (1-9 CREW):</p>
       <h1 id="h1">Running job to job and still not sure what’s left at the end of the month?</h1>
       <p class="hero-amber">Example: 2 missed calls a week can cost a roofer $144,000 a year.</p>
       <a href="https://audit.structtek.com/" class="btn" data-scan="hero" id="hero-btn">Take the free Revenue Leak Scan</a>
@@ -455,7 +455,7 @@
       <p class="price-line">Plug in your own numbers. This install: $9,500 once.</p>
       <p class="price-sub">or split pay: 2 × <span data-cfg="split_pay"></span></p>
       <div class="founding">
-        <h3>Founding install: <span data-cfg="founder_price" data-notag></span>, paid in full · 3 spots</h3>
+        <h3>Founding install: <span data-cfg="founder_price"></span>, paid in full · 3 spots</h3>
         <p>Founders share their before/after system numbers (named or anonymous), give an honest Day-30 debrief, and are OK being asked for 2 intros.</p>
       </div>
       <div class="urgency">
@@ -474,7 +474,7 @@
     <h2 class="sec-title" id="how-h">How it works</h2>
     <ol class="steps">
       <li><span class="step-name">Free scan.</span> 12 questions about your calls, estimates, deposits, extras, and invoices.</li>
-      <li><span class="step-name">Free Leak Review.</span> We go through your scan using your own numbers. If they don’t show at least $500/month at stake<span class="draft-tag">DRAFT</span>, I’ll tell you, and you shouldn’t buy.</li>
+      <li><span class="step-name">Free Leak Review.</span> We go through your scan using your own numbers. If they don’t show at least $500/month at stake <span class="draft-tag">DRAFT</span>, I’ll tell you, and you shouldn’t buy.</li>
       <li><span class="step-name">Day 0 to Day 7.</span> You send access. By Day 7, missed calls and web-form leads alert you and get an automatic reply.</li>
       <li><span class="step-name">Day 30.</span> All five systems live and tested, from a test call to a paid invoice. Days 31–60, we fix anything that breaks.</li>
     </ol>
@@ -487,7 +487,7 @@
   <div class="wrap">
     <h2 class="sec-title" id="who-h">Who builds it</h2>
     <div class="who">
-      <div id="photo-slot" class="photo-slot"><span class="draft-tag">DRAFT</span>Photo of Jacob goes here</div>
+      <div id="photo-slot" class="photo-slot"><span class="draft-tag">DRAFT</span></div>
       <p class="text">I’m Jacob Walker. StructTech sets up the office side for small roofing companies: missed-call text-back, estimate follow-up, deposits before dates, signed change orders, invoices that chase themselves. I’m not a software company and not a marketing agency. I build the system in the tools you’ll use, train your people, and hand it over.</p>
     </div>
   </div>
