@@ -191,16 +191,33 @@
     .bonus-val{font-family:var(--semi);font-weight:600;font-size:15px;color:var(--slate);display:block;margin-bottom:4px}
 
     /* S8 investment */
-    .anchor{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:10px}
-    .anchor li{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;font-size:17px}
-    .anchor .lbl{font-family:var(--semi);font-weight:600}
-    .price-line{font-family:var(--display);font-weight:800;font-size:36px;line-height:1.1;margin-bottom:8px}
-    .price-sub{font-size:16px;color:var(--slate);margin-bottom:28px}
-    .founding{border:3px solid var(--amber);background:#fff;border-radius:12px;padding:20px;text-align:left}
-    .founding h3{font-size:24px;margin-bottom:10px}
-    .urgency{margin:16px 0 24px;text-align:left;font-family:var(--semi);font-weight:600;font-size:16px}
-    .urgency p{margin:0 0 6px}
-    @media (min-width:1024px){.invest-inner{max-width:680px;margin:0 auto;text-align:center}.anchor{text-align:left}.price-line{font-size:44px}}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .leak-line{margin-bottom:20px;text-align:left}
+    .leak-line-main{font-size:18px;margin-bottom:2px}
+    .leak-line-main .lbl{font-family:var(--semi);font-weight:600}
+    .leak-line-sub{font-size:15px;color:var(--slate)}
+    .receipt{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:6px 18px;margin-bottom:28px;text-align:left}
+    .receipt dl{margin:0}
+    .r-row{display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:start;padding:12px 0;border-bottom:1px dashed var(--rule)}
+    .r-row:last-child{border-bottom:0}
+    .r-row dt{font-size:17px;line-height:1.35;min-width:0}
+    .r-row dd{margin:0;font-family:var(--semi);font-weight:600;font-size:17px;line-height:1.35;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+    .r-row.r-total{border-top:2px solid var(--ink);border-bottom:0;margin-top:2px}
+    .r-total dt{font-family:var(--semi);font-weight:600}
+    .r-total s{text-decoration-thickness:2px}
+    .price-line{font-family:var(--display);font-weight:800;font-size:40px;line-height:1.05;margin-bottom:6px}
+    .price-sub{font-size:16px;color:var(--slate);margin-bottom:16px}
+    .seal{display:flex;gap:14px;align-items:flex-start;text-align:left;border:2px solid var(--navy);border-radius:12px;background:#fff;padding:14px 16px;margin-bottom:28px}
+    .seal-icon{flex:none;width:40px;height:40px;color:var(--navy)}
+    .seal-title{font-family:var(--semi);font-weight:600;font-size:17px;margin-bottom:4px}
+    .seal-list{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+    .seal-list li{font-family:var(--semi);font-weight:600;font-size:14px;background:var(--navy);color:var(--paper);padding:3px 10px;border-radius:999px}
+    .founding{border:3px solid var(--amber);background:#fff;border-radius:12px;padding:20px;text-align:left;margin-bottom:24px}
+    .founding h3{font-size:26px;margin-bottom:10px}
+    .founding-spots{font-family:var(--semi);font-weight:600}
+    .founding-start{font-family:var(--semi);font-weight:600;margin-bottom:0}
+    .btn-note{font-size:15px;color:var(--slate);margin-top:10px}
+    @media (min-width:1024px){.invest-inner{max-width:680px;margin:0 auto;text-align:center}.price-line{font-size:48px}}
 
     /* S9 steps */
     .steps{list-style:none;margin:0 0 20px;padding:0;counter-reset:s;display:grid;gap:18px}
@@ -261,7 +278,7 @@
 <!-- ═══ CONFIG (Jacob supplies these; empty = blank with a DRAFT tag) ═══ -->
 <script>
   window.OLR_CONFIG = {
-    spots_left:    "",   // e.g. "3"
+    spots_left:    "3",
     next_start:    "",   // e.g. "Mon Nov 2" (ET)
     founder_price: "$1,900",
     split_pay:     "2 x $5,225", // full text after "or split pay:"
@@ -438,9 +455,9 @@
   <div class="wrap">
     <h2 class="sec-title" id="bonus-h">Plus, included</h2>
     <ul class="bonuses">
-      <li><span class="bonus-name">30-Day Breakdown Cover</span><span class="bonus-val"><span class="draft-tag">DRAFT</span> $750 value</span>Fixes for the month after handoff</li>
-      <li><span class="bonus-name">Stop-Snap-Sign Crew Kit</span><span class="bonus-val"><span class="draft-tag">DRAFT</span> $250 value</span>Change-order card and phone form for your crew</li>
-      <li><span class="bonus-name">Money Talk Scripts</span><span class="bonus-val"><span class="draft-tag">DRAFT</span> $250 value</span>Deposit, final-payment, and late-balance scripts</li>
+      <li><span class="bonus-name">30-Day Breakdown Cover</span><span class="bonus-val">$750 value</span>Fixes for the month after handoff</li>
+      <li><span class="bonus-name">Stop-Snap-Sign Crew Kit</span><span class="bonus-val">$250 value</span>Change-order card and phone form for your crew</li>
+      <li><span class="bonus-name">Money Talk Scripts</span><span class="bonus-val">$250 value</span>Deposit, final-payment, and late-balance scripts</li>
     </ul>
   </div>
 </section>
@@ -450,22 +467,43 @@
   <div class="wrap">
     <div class="invest-inner">
       <h2 class="sec-title" id="inv-h">The investment</h2>
-      <ul class="anchor">
-        <li><span class="lbl">Your office leak over 12 months:</span> <span class="blank">$ _____</span></li>
-        <li><span class="lbl">What’s in the stack:</span> the 5 systems + 3 bonuses (<span class="draft-tag">DRAFT</span> $1,250 in bonus value) + 3 guarantees</li>
-      </ul>
-      <p class="price-line">Plug in your own numbers. This install: $9,500 once.</p>
-      <p class="price-sub">or split pay: <span data-cfg="split_pay" data-blank="2 × $_____"></span></p>
+
+      <div class="leak-line">
+        <p class="leak-line-main"><span class="lbl">Your office leak over 12 months:</span> <span class="blank">$_____</span></p>
+        <p class="leak-line-sub">Use your scan number. Example: $144,000 (EXAMPLE).</p>
+      </div>
+
+      <div class="receipt" role="group" aria-label="What you get">
+        <dl>
+          <div class="r-row"><dt>30-Day Office Leak Repair: 5 systems installed</dt><dd>$9,500</dd></div>
+          <div class="r-row"><dt>30-Day Breakdown Cover</dt><dd>$750</dd></div>
+          <div class="r-row"><dt>Stop-Snap-Sign Crew Kit</dt><dd>$250</dd></div>
+          <div class="r-row"><dt>Money Talk Scripts</dt><dd>$250</dd></div>
+          <div class="r-row r-total"><dt>Total value</dt><dd><s><span class="sr-only">was </span>$10,750</s></dd></div>
+        </dl>
+      </div>
+
+      <p class="price-line">Your install: $9,500 once.</p>
+      <p class="price-sub">or split pay: <span data-cfg="split_pay" data-blank="2 x $_____" data-notag></span>.</p>
+
+      <div class="seal">
+        <svg class="seal-icon" aria-hidden="true"><use href="#shield"/></svg>
+        <div>
+          <p class="seal-title">Backed by 3 guarantees</p>
+          <ul class="seal-list"><li>7-Day First Fix</li><li>Dry-In Guarantee</li><li>Price Lock</li></ul>
+          <p class="fine">Guarantees cover the system being live and working, not revenue or sales. Full terms in the agreement.</p>
+        </div>
+      </div>
+
       <div class="founding">
-        <h3>Founding install: <span data-cfg="founder_price"></span>, paid in full · 3 spots</h3>
+        <h3>Founding install: <span data-cfg="founder_price" data-notag></span>, paid in full.</h3>
+        <p class="founding-spots"><span data-cfg="spots_left" data-blank="_" data-notag></span> of 3 founding spots left. Founding price ends after 3 installs. Then <span data-cfg="step_up_price" data-notag></span> for the next five.</p>
         <p>Founders share their before/after system numbers (named or anonymous), give an honest Day-30 debrief, and are OK being asked for 2 intros.</p>
+        <p class="founding-start">One install at a time.<span data-show-if="next_start" hidden> Next start: <span data-cfg="next_start" data-notag></span></span></p>
       </div>
-      <div class="urgency">
-        <p>FOUNDING SPOTS LEFT: <span data-cfg="spots_left" data-blank="_"></span> of 3</p>
-        <p>Founding price ends after 3 installs. Then <span data-cfg="step_up_price"></span> for the next five.</p>
-        <p>One install at a time. Next start: <span data-cfg="next_start" data-blank="_____"></span></p>
-      </div>
-      <a href="https://audit.structtek.com/" class="btn" data-scan="price">Take the free scan first →</a>
+
+      <a href="https://audit.structtek.com/" class="btn" data-scan="price">Find my leak: free scan</a>
+      <p class="btn-note">12 questions. No call needed.</p>
     </div>
   </div>
 </section>
@@ -557,6 +595,9 @@
     if (v) { el.textContent = v; return; }
     el.innerHTML = '<span class="blank">' + (el.getAttribute('data-blank') || '$_____') + '</span>' +
       (el.hasAttribute('data-notag') ? '' : '<span class="draft-tag">DRAFT</span>');
+  });
+  document.querySelectorAll('[data-show-if]').forEach(function (el) {
+    if ((cfg[el.getAttribute('data-show-if')] || '').trim()) el.hidden = false;
   });
   if (cfg.jacob_photo) {
     var slot = document.getElementById('photo-slot');
