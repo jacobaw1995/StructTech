@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The 14-Day Front-to-Back Ops Install | StructTech</title>
+  <!-- Unlisted until Jacob approves launch: flip to "index, follow" and add to sitemap.xml -->
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="A 14-day install that catches every lead and tracks every job for 1-9 person construction crews. Built by Jacob Walker, StructTech.">
+  <link rel="canonical" href="https://structtek.com/install/">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:title" content="The 14-Day Front-to-Back Ops Install | StructTech">
+  <meta property="og:description" content="A 14-day install that catches every lead and tracks every job for 1-9 person construction crews. Built by Jacob Walker, StructTech.">
+  <!-- TODO: og-install.jpg is a 1200×630 placeholder. Replace with the final OG image. -->
+  <meta property="og:image" content="https://structtek.com/assets/og-install.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Every lead you miss is a job you already paid to get. The 14-Day Front-to-Back Ops Install. StructTech.">
+  <meta property="og:url" content="https://structtek.com/install/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="/office-leak-repair/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/office-leak-repair/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Meta Pixel (same pixel as the rest of the site) -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '860379453656696');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=860379453656696&ev=PageView&noscript=1"/></noscript>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C8CH33C4C"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date()); gtag('config','G-6C8CH33C4C');
+  </script>
+
+  <style>
+    @font-face{font-family:"Barlow Condensed";font-weight:800;font-style:normal;font-display:swap;src:url(/office-leak-repair/fonts/barlow-condensed-800.woff2) format("woff2")}
+    @font-face{font-family:"Barlow Semi Condensed";font-weight:600;font-style:normal;font-display:swap;src:url(/office-leak-repair/fonts/barlow-semi-condensed-600.woff2) format("woff2")}
+    @font-face{font-family:"Barlow";font-weight:400;font-style:normal;font-display:swap;src:url(/office-leak-repair/fonts/barlow-400.woff2) format("woff2")}
+
+    :root{
+      --ink:#0A0A0A; --paper:#FFFFFF; --gray-100:#F4F4F4; --gray-300:#D9D9D9; --gray-600:#5A5A5A; --gray-on-ink:#BDBDBD;
+      --amber:#E8A33A; --strike:#D7263D; --success:#1E9E5A; --danger:#D7263D;
+      --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+      --semi:"Barlow Semi Condensed",Arial,sans-serif;
+      --body:"Barlow",Arial,sans-serif;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      --pad:16px; --sec:64px; --bar-h:80px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55}
+    @media (max-width:767px){body{padding-bottom:calc(var(--bar-h) + env(safe-area-inset-bottom))}}
+    img{max-width:100%;height:auto;display:block}
+    h1,h2,h3{margin:0;font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+    h1{font-size:38px;line-height:1.05}
+    h2{font-size:32px;line-height:1.1;margin-bottom:24px}
+    h3{font-size:24px;line-height:1.15}
+    p{margin:0 0 1em}
+    p:last-child{margin-bottom:0}
+    strong,b{font-family:var(--semi);font-weight:600}
+    a{color:inherit}
+    :focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
+    .on-paper :focus-visible{outline-color:var(--ink)}
+
+    .skip-link{position:absolute;left:12px;top:-60px;z-index:100;background:var(--amber);color:var(--ink);padding:12px 16px;font-family:var(--semi);font-weight:600;text-decoration:none;border-radius:6px}
+    .skip-link:focus{top:12px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* Layout: everything centered, one column */
+    .col{max-width:760px;margin:0 auto;padding:0 var(--pad)}
+    section{padding:var(--sec) 0;text-align:center}
+    .on-ink{background:var(--ink);color:var(--paper)}
+    .on-paper{background:var(--paper);color:var(--ink)}
+    .hl{background:linear-gradient(transparent 55%, var(--amber) 55%);color:inherit;padding:0 .08em}
+    .on-ink .hl{background:var(--amber);color:var(--ink);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+    .fine{font-size:14px;line-height:1.5;color:var(--gray-600)}
+    .on-ink .fine{color:var(--gray-on-ink)}
+    .lead{font-size:20px}
+
+    /* Unfilled values (preview only; CI blocks merging while any remain) */
+    .blank{display:inline-block;font-family:var(--mono);font-size:.78em;font-weight:700;line-height:1.3;letter-spacing:0;background:#FFF3C4;color:#5C4500;border:1px dashed #8A6A00;border-radius:4px;padding:1px 6px;vertical-align:baseline}
+
+    /* Buttons: one style only */
+    .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:14px 28px;border:0;border-radius:999px;background:var(--amber);color:var(--ink);font-family:var(--semi);font-weight:600;font-size:19px;line-height:1.2;text-decoration:none;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+    .btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--amber)}
+    .on-ink .btn:focus-visible{outline-color:var(--paper)}
+    @media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s ease,box-shadow .15s ease}.btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.22)}}
+    @media (min-width:768px){.btn{display:inline-flex;width:auto;min-width:320px;min-height:60px;font-size:20px}}
+    .cta{margin-top:32px}
+    .btn-under{font-size:15px;margin-top:12px;color:var(--gray-600)}
+    .on-ink .btn-under{color:var(--gray-on-ink)}
+    .text-link{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-family:var(--semi);font-weight:600;font-size:16px;text-decoration:underline;text-underline-offset:4px}
+
+    /* Header */
+    .site-head{background:var(--ink);padding:12px 0}
+    .site-head .col{display:flex;justify-content:center}
+    .logo-plate{display:inline-flex;background:var(--paper);border-radius:6px;padding:6px 10px}
+    .logo-plate img{width:92px;height:auto}
+
+    /* 1-2 Hero */
+    .hero{padding:24px 0 56px}
+    .eyebrow{font-family:var(--semi);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+    .hero h1{margin-bottom:18px}
+    .hero .sub{font-size:18px;color:#E6E6E6;margin-bottom:24px}
+
+    /* 3 Problem / 12 Fit lists */
+    .ticks{list-style:none;margin:0 auto;padding:0;max-width:600px;text-align:left;display:grid;gap:14px}
+    .ticks li{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start}
+    .ticks svg{width:28px;height:28px;margin-top:1px}
+    .ic-x{color:var(--danger)} .ic-ok{color:var(--success)}
+    .close-line{font-family:var(--display);font-weight:800;font-size:26px;line-height:1.15;margin-top:32px}
+
+    /* 4 Leak math */
+    .ex-badge{display:inline-block;font-family:var(--semi);font-weight:600;font-size:15px;letter-spacing:.14em;background:var(--amber);color:var(--ink);padding:4px 14px;border-radius:4px;margin-bottom:16px}
+    .math-line{font-size:20px;line-height:1.5}
+    .math-total{display:block;font-family:var(--display);font-weight:800;font-size:44px;line-height:1.1;color:var(--amber);margin-top:6px}
+    .calc{background:#1A1A1A;border:1px solid #333;border-radius:14px;padding:24px 18px;margin:32px auto 0;max-width:560px}
+    .calc h3{margin-bottom:16px}
+    .calc-fields{display:grid;gap:14px;text-align:left}
+    .calc label{display:block;font-family:var(--semi);font-weight:600;font-size:16px;margin-bottom:6px}
+    .calc input{width:100%;min-height:52px;font:inherit;font-size:20px;padding:10px 14px;border-radius:10px;border:2px solid #555;background:var(--ink);color:var(--paper)}
+    .calc input:focus{border-color:var(--amber);outline:none}
+    .calc-out{margin-top:20px}
+    .calc-label{font-family:var(--semi);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-on-ink)}
+    .calc-num{font-family:var(--display);font-weight:800;font-size:44px;line-height:1.1;color:var(--amber);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+    @media (min-width:600px){.calc-fields{grid-template-columns:1fr 1fr}}
+
+    /* 5 Before → After */
+    .ba{list-style:none;margin:0 auto;padding:0;max-width:600px;display:grid;gap:14px}
+    .ba li{border:1px solid var(--gray-300);border-radius:12px;padding:16px 18px;background:var(--paper)}
+    .ba .before{display:block;color:var(--gray-600);text-decoration:line-through;text-decoration-color:var(--danger);text-decoration-thickness:2px}
+    .ba .arrow{display:block;font-size:20px;line-height:1.2;color:var(--gray-600)}
+    .ba .after{display:block;font-family:var(--semi);font-weight:600;font-size:19px}
+
+    /* 6 Stages */
+    .stages{display:grid;gap:20px;max-width:640px;margin:0 auto}
+    .stage{background:#1A1A1A;border:1px solid #333;border-radius:14px;padding:28px 20px;text-align:center}
+    .stage-num{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--amber);color:var(--ink);font-family:var(--display);font-weight:800;font-size:36px;margin-bottom:12px}
+    .stage h3{margin-bottom:4px}
+    .stage-tool{font-family:var(--semi);font-weight:600;color:var(--amber);margin-bottom:14px}
+    .stage ul{list-style:none;margin:0 auto;padding:0;max-width:440px;text-align:left;display:grid;gap:10px}
+    .stage li{display:grid;grid-template-columns:24px 1fr;gap:10px}
+    .stage li svg{width:22px;height:22px;margin-top:3px;color:var(--amber)}
+    .split-note{font-family:var(--display);font-weight:800;font-size:24px;margin-top:28px}
+
+    /* 7-8-10 Receipt rows */
+    .receipt{max-width:640px;margin:0 auto;text-align:left}
+    .r-row{display:grid;grid-template-columns:28px 1fr auto;column-gap:12px;align-items:start;padding:14px 0;border-bottom:1px dashed var(--gray-300)}
+    .r-row svg{width:24px;height:24px;color:var(--success);margin-top:2px}
+    .r-name{font-family:var(--semi);font-weight:600;font-size:18px;line-height:1.3}
+    .r-desc{display:block;font-family:var(--body);font-weight:400;font-size:16px;color:var(--gray-600);margin-top:2px}
+    .r-val{font-family:var(--mono);font-weight:700;font-size:17px;white-space:nowrap;font-variant-numeric:tabular-nums}
+    .r-val.none{font-family:var(--semi);font-weight:600;font-size:14px;color:var(--gray-600)}
+    .bonus-tag{display:inline-block;font-family:var(--semi);font-weight:600;font-size:12px;letter-spacing:.12em;background:var(--amber);color:var(--ink);padding:2px 8px;border-radius:3px;margin-right:6px;vertical-align:2px}
+
+    /* 9 Timeline */
+    .timeline{list-style:none;margin:0 auto;padding:0;max-width:520px;position:relative}
+    .timeline::before{content:"";position:absolute;left:50%;top:28px;bottom:28px;width:3px;background:var(--amber);transform:translateX(-50%)}
+    .timeline li{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:14px;padding:22px 18px 20px;margin:0 0 28px}
+    .timeline li:last-child{margin-bottom:0}
+    .t-dot{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--amber);font-family:var(--display);font-weight:800;font-size:22px;margin-bottom:8px}
+    .t-days{font-family:var(--semi);font-weight:600;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600)}
+    .timeline h3{margin:2px 0 8px}
+
+    /* 10 Price card */
+    .price-card{background:var(--gray-100);max-width:640px;margin:0 auto;padding:28px 18px;border-top:3px dashed var(--ink);border-bottom:3px dashed var(--ink)}
+    .price-card .receipt .r-row{border-bottom-color:#C9C9C9}
+    .r-total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 0 0;border-top:2px solid var(--ink);margin-top:4px;font-family:var(--semi);font-weight:600;font-size:19px}
+    .r-total s{font-family:var(--mono);font-weight:700;color:var(--strike);text-decoration-color:var(--strike);text-decoration-thickness:3px}
+    .your-price{margin:24px 0 8px}
+    .your-price .lbl{display:block;font-family:var(--semi);font-weight:600;font-size:16px;letter-spacing:.12em;text-transform:uppercase}
+    .your-price .num{display:block;font-family:var(--display);font-weight:800;font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
+    .fee-split{text-align:left;max-width:560px;margin:20px auto 0;display:grid;gap:12px}
+    .fee-split p{margin:0;background:var(--paper);border-left:4px solid var(--amber);padding:12px 14px;border-radius:0 8px 8px 0;font-size:17px}
+    .pay-line{margin-top:16px;font-size:17px}
+
+    /* 11 Seal */
+    .seal-wrap{margin-top:48px}
+    .seal{width:200px;height:200px;margin:0 auto 20px;border-radius:50%;background:var(--amber);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;box-shadow:inset 0 0 0 6px var(--amber),inset 0 0 0 9px var(--ink)}
+    .seal svg{width:34px;height:34px;margin-bottom:6px}
+    .seal-name{font-family:var(--display);font-weight:800;font-size:21px;line-height:1.05;text-transform:uppercase}
+    .seal-amt{font-family:var(--semi);font-weight:600;font-size:13px;letter-spacing:.14em;margin-top:6px}
+    .seal-wrap h3{margin-bottom:14px}
+    .terms-box{max-width:600px;margin:0 auto;text-align:left;font-size:17px}
+    .terms-box h4{font-family:var(--semi);font-weight:600;font-size:18px;margin:20px 0 6px}
+
+    /* Form */
+    .form-card{background:var(--gray-100);border-radius:16px;padding:24px 16px;max-width:600px;margin:0 auto;text-align:left}
+    .field{margin-bottom:16px}
+    .field label,.field .label{display:block;font-family:var(--semi);font-weight:600;font-size:16px;margin-bottom:6px}
+    .req{color:var(--danger)}
+    .opt{font-family:var(--body);font-weight:400;color:var(--gray-600)}
+    .field input,.field select{width:100%;min-height:52px;font:inherit;font-size:18px;padding:10px 14px;border:2px solid #8C8C8C;border-radius:10px;background:var(--paper);color:var(--ink)}
+    .field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%230A0A0A' stroke-width='2.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:44px}
+    .field input:focus,.field select:focus{border-color:var(--ink);outline:3px solid var(--amber);outline-offset:1px}
+    .field input[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:var(--danger)}
+    .err{display:block;color:#B0182C;font-size:15px;margin-top:4px}
+    .err:empty{display:none}
+    .row2{display:grid;gap:0}
+    @media (min-width:600px){.row2{grid-template-columns:1fr 1fr;column-gap:14px}}
+    .consent{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.5;color:#333;margin:4px 0 20px}
+    .consent input{width:24px;height:24px;margin:2px 0 0;accent-color:var(--ink)}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .form-card .btn{width:100%;display:flex}
+    .form-note{font-size:14px;color:var(--gray-600);margin-top:12px;text-align:center}
+    .form-status{margin-top:12px;font-family:var(--semi);font-weight:600;text-align:center}
+    .form-status:empty{display:none}
+
+    /* 13 About */
+    .avatar{width:160px;height:160px;border-radius:50%;object-fit:cover;margin:0 auto 20px;background:var(--gray-100)}
+    .about p{max-width:620px;margin-left:auto;margin-right:auto}
+
+    /* 15 FAQ */
+    .faq{max-width:680px;margin:0 auto;text-align:left;border-top:1px solid var(--gray-300)}
+    .faq details{border-bottom:1px solid var(--gray-300)}
+    .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:12px 0;font-family:var(--semi);font-weight:600;font-size:19px}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary svg{flex:none;width:24px;height:24px}
+    .faq details[open] summary svg{transform:rotate(180deg)}
+    .faq .ans{padding:0 0 18px;font-size:17px}
+
+    /* 16 Scarcity */
+    .scarcity{padding:32px 0;background:var(--amber);color:var(--ink);font-size:20px}
+
+    /* 17 Final */
+    .final h2{font-size:40px}
+
+    /* 18 Footer */
+    .site-foot{background:var(--ink);color:var(--gray-on-ink);padding:40px 0;font-size:15px;text-align:center;border-top:1px solid #222}
+    .site-foot p{margin:0 0 10px}
+    .site-foot a{color:var(--paper);display:inline-flex;align-items:center;min-height:44px;padding:0 6px}
+    .site-foot .fine{max-width:600px;margin:16px auto 0;color:var(--gray-on-ink)}
+
+    /* Sticky mobile CTA */
+    .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(10,10,10,.96);border-top:1px solid #333;padding:10px var(--pad) calc(12px + env(safe-area-inset-bottom));visibility:hidden;transform:translateY(110%)}
+    .sticky.show{visibility:visible;transform:none}
+    @media (min-width:768px){.sticky{display:none}}
+    @media (prefers-reduced-motion:no-preference){
+      .sticky{transition:transform .2s ease,visibility .2s}
+      .faq summary svg{transition:transform .15s ease}
+    }
+
+    @media (min-width:768px){
+      :root{--sec:112px}
+      body{font-size:20px;line-height:1.6}
+      h1{font-size:64px}
+      h2{font-size:46px;margin-bottom:32px}
+      h3{font-size:28px}
+      .hero{padding:48px 0 96px}
+      .hero .sub{font-size:21px}
+      .close-line{font-size:32px}
+      .math-total,.calc-num{font-size:56px}
+      .your-price .num{font-size:88px}
+      .price-card{padding:40px 36px}
+      .form-card{padding:36px 32px}
+      .final h2{font-size:56px}
+    }
+  </style>
+</head>
+<body>
+<!-- ═══ CONFIG ═══
+  sheet_endpoint: the Google Apps Script web-app URL that writes leads to your Google Sheet
+                  (see _ops/install-leads-sheet.gs). Empty = the form still works in preview but saves nowhere.
+  spots_left / next_start / concurrent: the scarcity strip only shows when ALL three are filled.
+  show_proof: stays false until real, permitted client proof exists.
+-->
+<script>
+  window.INSTALL_CONFIG = {
+    sheet_endpoint: "",
+    calendly_url:   "https://calendly.com/jacob-structtek/30min",
+    concurrent:     "",   // e.g. "2"
+    spots_left:     "",   // e.g. "1"
+    next_start:     "",   // e.g. "December 1"
+    show_proof:     false
+  };
+</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="col">
+    <a href="https://structtek.com/" class="logo-plate"><img src="/assets/logo.png" alt="StructTech home" width="180" height="91"></a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 1-2 · Hook + sub + CTA -->
+<section class="hero on-ink" aria-labelledby="h1">
+  <div class="col">
+    <p class="eyebrow">For 1-9 person construction crews</p>
+    <h1 id="h1">Every lead you miss is <span class="hl">a job you already paid to get.</span></h1>
+    <p class="sub">In 14 days I build the system that catches every lead on the front end and tracks every job on the back end, so you stop running the business out of your phone and your head.</p>
+    <a href="#book" class="btn" data-cta="hero" id="hero-btn">Book My Install Call</a>
+    <p class="btn-under">30-minute call with Jacob. No pitch deck. We look at your leaks.</p>
+    <a href="https://audit.structtek.com/" class="text-link" data-scan="hero">Not ready? Run the free Revenue Leak Scan →</a>
+  </div>
+</section>
+
+<!-- 3 · Problem -->
+<section class="on-paper" aria-labelledby="prob-h">
+  <div class="col">
+    <h2 id="prob-h">Right now, <span class="hl">you are the office.</span></h2>
+    <ul class="ticks">
+      <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Calls hit your cell while you’re on a roof, at a bid, or driving. Half never get called back.</span></li>
+      <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Estimates go out, and then nobody follows up.</span></li>
+      <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Jobs live in your head, your texts, and a whiteboard.</span></li>
+      <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Hand-offs from sale to crew get dropped. Materials, dates, and sign-offs get missed.</span></li>
+      <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Your crew calls you for answers that should already be written down.</span></li>
+      <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>You “do the office” at 9 p.m. after a full day.</span></li>
+    </ul>
+    <p class="close-line">None of this is a hustle problem. <span class="hl">It’s a systems problem.</span></p>
+  </div>
+</section>
+
+<!-- 4 · Leak math (EXAMPLE) -->
+<section class="on-ink" aria-labelledby="math-h">
+  <div class="col">
+    <h2 id="math-h">What a leak costs. <span class="hl">Example math.</span></h2>
+    <span class="ex-badge">EXAMPLE</span>
+    <p class="math-line"><strong>2</strong> missed or slow leads a month that would have closed × <strong>$6,000</strong> average job × <strong>12</strong> months =
+      <span class="math-total">$144,000 a year</span></p>
+    <p class="fine">Example numbers, not a promise. Put in your own below.</p>
+
+    <div class="calc" role="group" aria-labelledby="calc-h">
+      <h3 id="calc-h">Your numbers</h3>
+      <div class="calc-fields">
+        <div><label for="c-leads">Leads you lose per month</label><input id="c-leads" type="text" inputmode="numeric" pattern="[0-9]*" value="2" autocomplete="off"></div>
+        <div><label for="c-job">Average job size ($)</label><input id="c-job" type="text" inputmode="numeric" pattern="[0-9]*" value="6000" autocomplete="off"></div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="calc-label">Your estimate</div>
+        <div class="calc-num"><span id="c-out">$144,000</span> a year</div>
+        <div>walking out the door.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Promise / what changes -->
+<section class="on-paper" aria-labelledby="prom-h">
+  <div class="col">
+    <h2 id="prom-h">Front to back. <span class="hl">Nothing falls through the cracks.</span></h2>
+    <ul class="ba">
+      <li><span class="before">Calls go to voicemail</span><span class="arrow" aria-hidden="true">↓</span><span class="sr-only">now: </span><span class="after">Every call and form lands in one pipeline and gets a first reply.*</span></li>
+      <li><span class="before">Estimates die</span><span class="arrow" aria-hidden="true">↓</span><span class="sr-only">now: </span><span class="after">Estimate follow-ups run on their own.</span></li>
+      <li><span class="before">Jobs in your head</span><span class="arrow" aria-hidden="true">↓</span><span class="sr-only">now: </span><span class="after">Every job on one board, by phase.</span></li>
+      <li><span class="before">Crew calls you</span><span class="arrow" aria-hidden="true">↓</span><span class="sr-only">now: </span><span class="after">Crew asks the SOP assistant first.</span></li>
+      <li><span class="before">Paperwork everywhere</span><span class="arrow" aria-hidden="true">↓</span><span class="sr-only">now: </span><span class="after">Templates in one Drive vault.</span></li>
+    </ul>
+    <p class="fine" style="margin-top:20px">*Automated text replies go live after your business texting registration (A2P 10DLC) is approved by the carriers. Until then, replies go by email and call tasks.</p>
+    <div class="cta"><a href="#book" class="btn" data-cta="promise">Book My Install Call</a></div>
+  </div>
+</section>
+
+<!-- 6 · Two stages -->
+<section class="on-ink" aria-labelledby="stage-h">
+  <div class="col">
+    <h2 id="stage-h">Two stages. <span class="hl">Getting the job. Doing the job.</span></h2>
+    <div class="stages">
+      <div class="stage">
+        <span class="stage-num" aria-hidden="true">1</span>
+        <h3>Front-End Lead Capture</h3>
+        <p class="stage-tool">GoHighLevel</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>Missed-call text-back*</span></li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>One inbox for calls, texts, email, and web leads</span></li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>Automated speed-to-lead follow-up</span></li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>Pipeline from new lead → booked estimate</span></li>
+        </ul>
+        <p class="fine" style="margin-top:14px">*After A2P carrier approval.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-num" aria-hidden="true">2</span>
+        <h3>Back-End Operations</h3>
+        <p class="stage-tool">Monday.com + Google Workspace + AI assistant</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>Job board built around your phases and stage gates (estimate → sign-off)</span></li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>Status notifications so sales-to-field hand-offs don’t get dropped</span></li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>Your SOPs written down and loaded into an AI assistant</span></li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg><span>Connect your existing QuickBooks / estimating tool where a native integration exists <span class="blank">[BLANK: keep this QuickBooks line or remove? (Decision 3)]</span></span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="split-note">GoHighLevel gets the job. Monday does the job.</p>
+  </div>
+</section>
+
+<!-- 7 · Value stack -->
+<section class="on-paper" aria-labelledby="stack-h">
+  <div class="col">
+    <h2 id="stack-h">Everything you get.</h2>
+    <div class="receipt" role="list">
+      <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">GHL Contractor Engine Snapshot<span class="r-desc">CRM pipelines, automated estimate follow-ups, automated review requests</span></span><span class="r-val">$2,500</span></div>
+      <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">Monday.com Operations Board &amp; Dispatch Tracking<span class="r-desc">Every job tracked through its phases; sales-to-field hand-offs logged, not remembered</span></span><span class="r-val">$1,500</span></div>
+      <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">Grok Bot Operational Assistant<span class="r-desc">AI assistant trained on your SOPs; your crew and office ask it questions by chat</span></span><span class="r-val">$1,000</span></div>
+      <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">Google Workspace Sync &amp; Template Vault<span class="r-desc">Estimate, work order, and material sign-off templates in one Drive</span></span><span class="r-val">$750</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · Bonuses -->
+<section class="on-paper" style="padding-top:0" aria-labelledby="bonus-h">
+  <div class="col">
+    <h2 id="bonus-h">Bonuses.</h2>
+    <div class="receipt" role="list">
+      <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name"><span class="bonus-tag">BONUS</span>Field Crew Quick-Start Video Training Library<span class="r-desc"><span class="blank">[BLANK: # of videos]</span> short recorded walkthroughs so your office and crew leads know how to use the system without calling you.</span></span><span class="r-val">$1,000</span></div>
+      <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name"><span class="bonus-tag">BONUS</span>Estimate &amp; follow-up templates + SMS scripts<span class="r-desc">Written for your trade, ready to use.</span></span><span class="r-val none">Included</span></div>
+      <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name"><span class="bonus-tag">BONUS</span>Priority 14-day post-launch support<span class="r-desc"><span class="blank">[BLANK: support channel + response window]</span></span></span><span class="r-val none">Included</span></div>
+    </div>
+    <p class="fine" style="margin-top:16px"><span class="blank">[BLANK: include the templates/scripts and priority-support bonuses? Assign values or leave “Included”? (Decision 14)]</span></p>
+  </div>
+</section>
+
+<!-- 9 · 14-day timeline -->
+<section class="on-paper" style="background:var(--gray-100)" aria-labelledby="time-h">
+  <div class="col">
+    <h2 id="time-h">Live in <span class="hl">14 days.</span></h2>
+    <ol class="timeline">
+      <li><span class="t-dot" aria-hidden="true">1</span><div class="t-days">Days 1-5</div><h3>Build.</h3><p>GHL pipelines, Monday boards, Workspace templates.</p></li>
+      <li><span class="t-dot" aria-hidden="true">2</span><div class="t-days">Days 6-10</div><h3>Tune.</h3><p>Load your SOPs into the AI assistant, connect the triggers and notifications.</p></li>
+      <li><span class="t-dot" aria-hidden="true">3</span><div class="t-days">Days 11-14</div><h3>Go live.</h3><p>Live test, onboard your key people, and the guarantee window starts.</p></li>
+    </ol>
+    <p class="fine" style="margin-top:24px">Day 1 starts after kickoff and once I have the access on your checklist.</p>
+    <div class="cta"><a href="#book" class="btn" data-cta="timeline">Book My Install Call</a></div>
+  </div>
+</section>
+
+<!-- 10 · Price receipt + 11 · Guarantee -->
+<section class="on-paper" aria-labelledby="price-h">
+  <div class="col">
+    <h2 id="price-h">Here’s the math.</h2>
+    <div class="price-card" id="price-block">
+      <div class="receipt" role="list">
+        <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">GHL Contractor Engine Snapshot</span><span class="r-val">$2,500</span></div>
+        <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">Monday.com Operations Board &amp; Dispatch Tracking</span><span class="r-val">$1,500</span></div>
+        <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">Grok Bot Operational Assistant</span><span class="r-val">$1,000</span></div>
+        <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name">Google Workspace Sync &amp; Template Vault</span><span class="r-val">$750</span></div>
+        <div class="r-row" role="listitem"><svg aria-hidden="true"><use href="#i-ok"/></svg><span class="r-name"><span class="bonus-tag">BONUS</span>Field Crew Quick-Start Video Training Library</span><span class="r-val">$1,000</span></div>
+        <div class="r-total"><span>Total value</span><s><span class="sr-only">was </span>$6,750</s></div>
+      </div>
+      <p class="your-price"><span class="lbl">Your price</span><span class="num">$5,000</span></p>
+      <div class="fee-split">
+        <p><strong>$3,500 Build Fee.</strong> Pays for the custom build: your pipelines, boards, templates, and AI assistant. Non-refundable, because the work is built for your business.</p>
+        <p><strong>$1,500 Go-Live Fee.</strong> Fully backed by the guarantee below.</p>
+      </div>
+      <p class="pay-line">Payment: <span class="blank">[BLANK: pay in full / split terms]</span>. Handled with a written agreement after the call. Nothing is charged on this page.</p>
+      <p class="fine">Compare it to the example leak above.</p>
+    </div>
+
+    <div class="seal-wrap" aria-labelledby="guar-h">
+      <div class="seal" aria-hidden="true">
+        <svg><use href="#i-shield"/></svg>
+        <span class="seal-name">14-Day Go-Live Guarantee</span>
+        <span class="seal-amt">$1,500 BACKED</span>
+      </div>
+      <h3 id="guar-h">If you’re not live in 14 days, you get the $1,500 back.</h3>
+      <div class="terms-box">
+        <p>If by day 14 after kickoff (with your access checklist complete) your system isn’t live and hitting the operational baseline we agree on in writing at kickoff, I refund the full $1,500 Go-Live Fee. The $3,500 Build Fee covers custom work and is not refundable.</p>
+        <p class="fine">Baseline: <span class="blank">[BLANK: baseline definition (see E.4)]</span></p>
+        <h4>Price Lock / Zero Change-Order</h4>
+        <p>The price we agree on is the price. No surprise change orders for anything in the agreed scope. New requests outside scope get quoted separately, and only if you say yes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Form -->
+<section class="on-paper" id="book" style="padding-top:0" aria-labelledby="book-h">
+  <div class="col">
+    <h2 id="book-h">Book your install call.</h2>
+    <p class="lead">Tell me a little about your crew, then pick a time on the next screen.</p>
+    <form class="form-card" id="lead-form" novalidate>
+      <div class="hp" aria-hidden="true"><label for="f-company">Company website</label><input id="f-company" name="company_website" type="text" tabindex="-1" autocomplete="off"></div>
+      <div class="row2">
+        <div class="field"><label for="f-name">First name <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="first_name" type="text" autocomplete="given-name" required aria-describedby="e-name"><span class="err" id="e-name"></span></div>
+        <div class="field"><label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="e-phone"><span class="err" id="e-phone"></span></div>
+      </div>
+      <div class="field"><label for="f-email">Email <span class="req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="e-email"><span class="err" id="e-email"></span></div>
+      <div class="row2">
+        <div class="field"><label for="f-trade">Trade <span class="req" aria-hidden="true">*</span></label>
+          <select id="f-trade" name="trade" required aria-describedby="e-trade">
+            <option value="">Choose one</option><option>Roofing</option><option>Exteriors/Siding</option><option>Concrete</option><option>Remodeling</option><option>Other</option>
+          </select><span class="err" id="e-trade"></span></div>
+        <div class="field"><label for="f-crew">Crew size <span class="req" aria-hidden="true">*</span></label>
+          <select id="f-crew" name="crew_size" required aria-describedby="e-crew">
+            <option value="">Choose one</option><option>1-3</option><option>4-6</option><option>7-9</option><option>10+</option>
+          </select><span class="err" id="e-crew"></span></div>
+      </div>
+      <div class="field"><label for="f-leak">Biggest leak right now <span class="opt">(optional)</span></label><input id="f-leak" name="biggest_leak" type="text" maxlength="200" autocomplete="off"></div>
+
+      <label class="consent" for="f-sms">
+        <input id="f-sms" name="sms_consent" type="checkbox">
+        <span id="sms-text">I agree to receive text messages from StructTech LLC about my inquiry and scheduling at the number provided. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</span>
+      </label>
+
+      <button type="submit" class="btn" id="submit-btn">Book My Install Call →</button>
+      <p class="form-note">By submitting, you agree to our <a href="/terms/">Terms</a> and <a href="/privacy-policy/">Privacy Policy</a>.</p>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- 12 · Who it's for / not for -->
+<section class="on-ink" aria-labelledby="fit-h">
+  <div class="col">
+    <h2 id="fit-h">This is for you if…</h2>
+    <ul class="ticks">
+      <li><svg class="ic-ok" style="color:#3FCB7E" aria-hidden="true"><use href="#i-ok"/></svg><span>You run a 1-9 person crew and you’re still the office.</span></li>
+      <li><svg class="ic-ok" style="color:#3FCB7E" aria-hidden="true"><use href="#i-ok"/></svg><span>You get leads but lose them in follow-up.</span></li>
+      <li><svg class="ic-ok" style="color:#3FCB7E" aria-hidden="true"><use href="#i-ok"/></svg><span>You’ll give me access and a decision-maker for 14 days.</span></li>
+      <li><svg class="ic-ok" style="color:#3FCB7E" aria-hidden="true"><use href="#i-ok"/></svg><span>You want one system, not five apps nobody uses.</span></li>
+    </ul>
+    <h2 style="margin-top:64px">This is <span class="hl">not</span> for you if…</h2>
+    <ul class="ticks">
+      <li><svg class="ic-x" style="color:#FF5A6E" aria-hidden="true"><use href="#i-x"/></svg><span>You want a website or ads only. This is an ops install.</span></li>
+      <li><svg class="ic-x" style="color:#FF5A6E" aria-hidden="true"><use href="#i-x"/></svg><span>You want to keep changing scope mid-build. Scope is locked at kickoff, and changes go through written change control.</span></li>
+      <li><svg class="ic-x" style="color:#FF5A6E" aria-hidden="true"><use href="#i-x"/></svg><span>You won’t give admin access or answer questions within <span class="blank">[BLANK: e.g. 1 business day]</span>.</span></li>
+      <li><svg class="ic-x" style="color:#FF5A6E" aria-hidden="true"><use href="#i-x"/></svg><span><span class="blank">[BLANK: other hard borders, e.g. late payment / rewrites]</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 13 · About -->
+<section class="on-paper about" aria-labelledby="who-h">
+  <div class="col">
+    <h2 id="who-h">Who builds it.</h2>
+    <img class="avatar" src="/office-leak-repair/jacob-walker.webp" alt="Jacob Walker" width="160" height="160" loading="lazy" decoding="async">
+    <p>I’m Jacob Walker. I build operations systems for small construction crews: the lead capture, follow-up, job tracking, and SOPs that let the owner stop being the office.</p>
+    <p>I work as a solo builder backed by AI assistants, so you deal with me directly, not an account manager. I don’t run a crew. I build the system your crew runs on.</p>
+  </div>
+</section>
+
+<!-- 14 · Proof (renders nothing unless INSTALL_CONFIG.show_proof is true AND real proof is added) -->
+<template id="proof-tpl">
+  <section class="on-paper" aria-labelledby="proof-h" style="padding-top:0">
+    <div class="col">
+      <h2 id="proof-h">What owners say.</h2>
+      <!-- Up to 3 testimonial cards go here. Real client, real permission, real result only. -->
+    </div>
+  </section>
+</template>
+<div id="proof-slot"></div>
+
+<!-- 15 · FAQ -->
+<section class="on-paper" style="background:var(--gray-100)" aria-labelledby="faq-h">
+  <div class="col">
+    <h2 id="faq-h">Questions.</h2>
+    <div class="faq">
+      <details><summary>What tools does this use? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>GoHighLevel for leads and follow-up, Monday.com for jobs, Google Workspace for documents, and an AI assistant trained on your SOPs. Plus your existing QuickBooks / estimating tool where it has a native integration.</p></div></details>
+      <details><summary>Do I have to switch from my current software? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>Not always. On the call we look at what you use now. If it works and connects, we keep it. If it’s the leak, we replace it.</p><p class="fine"><span class="blank">[BLANK: confirm this draft answer]</span></p></div></details>
+      <details><summary>I already use another tool for CRM or jobs. Does this still work? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>Tell me what you use on the call. I’ll tell you straight whether this install fits or not.</p><p class="fine"><span class="blank">[BLANK: confirm this draft answer]</span></p></div></details>
+      <details><summary>Who pays for the software subscriptions? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p><span class="blank">[BLANK: e.g. you own and pay for your accounts (GHL, Monday, Workspace) directly]</span></p></div></details>
+      <details><summary>Can you text my leads automatically on day one? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>Business texting needs carrier registration (A2P 10DLC) in your business name. I set it up and submit it, but approval time is up to the carriers. Until it’s approved, follow-up runs by email and call tasks.</p></div></details>
+      <details><summary>Is it really 14 days? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>14 days from kickoff, once your access checklist is done. If it’s not live and hitting the agreed baseline by then, the $1,500 Go-Live Fee comes back to you.</p></div></details>
+      <details><summary>What do I need to give you? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>Admin access to your accounts, your phone setup, any SOPs or checklists you have (rough is fine), and about <span class="blank">[BLANK: X hours]</span> of your time across the 14 days.</p></div></details>
+      <details><summary>What’s refundable? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>The $1,500 Go-Live Fee, under the guarantee terms. The $3,500 Build Fee is not, because it pays for custom work.</p></div></details>
+      <details><summary>What happens after day 14? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>You own the system. You get 14 days of priority support. After that there’s optional monthly support. We set the price on the call.</p></div></details>
+      <details><summary>Will this get me more leads? <svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans"><p>No. This catches and works the leads you already get. Ads and marketing are separate.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 16 · Scarcity (hidden unless concurrent + spots_left + next_start are all filled) -->
+<div class="scarcity" id="scarcity" hidden>
+  <div class="col" style="text-align:center">
+    <p>I take on <span data-cfg="concurrent"></span> installs at a time. <strong><span data-cfg="spots_left"></span> spots</strong> open for the <span data-cfg="next_start"></span> start.</p>
+  </div>
+</div>
+
+<!-- 17 · Final CTA -->
+<section class="on-ink final" aria-labelledby="final-h">
+  <div class="col">
+    <h2 id="final-h">Stop being <span class="hl">the office.</span></h2>
+    <p class="lead">30 minutes. We find your leaks, and you decide if the install is worth it.</p>
+    <a href="#book" class="btn" data-cta="final">Book My Install Call</a>
+    <div><a href="https://audit.structtek.com/" class="text-link" data-scan="final">Not ready? Run the free Revenue Leak Scan →</a></div>
+  </div>
+</section>
+
+</main>
+
+<!-- 18 · Footer -->
+<footer class="site-foot">
+  <div class="col">
+    <p>StructTech LLC, 561 Bellaire Dr, Tipp City, OH 45371</p>
+    <p><a href="tel:+19374672660">(937) 467-2660</a> · <a href="mailto:jacob@structtek.com">jacob@structtek.com</a></p>
+    <nav aria-label="Legal"><a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms/">Terms</a></nav>
+    <p>© 2026 StructTech LLC</p>
+    <p class="fine">Automated text replies go live after your business texting registration (A2P 10DLC) is approved by the carriers. Until then, replies go by email and call tasks.</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky" aria-hidden="true">
+  <a href="#book" class="btn" data-cta="sticky" tabindex="-1">Book My Install Call</a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var cfg = window.INSTALL_CONFIG || {};
+  var SS_ATTR = 'install_attr', SS_LEAD = 'install_lead';
+  function ss(k, v) { try { if (v === undefined) return JSON.parse(sessionStorage.getItem(k) || 'null'); sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
+  function track(name, params, opts) {
+    if (typeof fbq === 'function') fbq('track', name, params || {}, opts || {});
+  }
+  function ga(name, params) { if (typeof gtag === 'function') gtag('event', name, params || {}); }
+
+  /* ── Attribution: capture UTMs / fbclid once per session ── */
+  var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+  var qs = new URLSearchParams(location.search);
+  var attr = ss(SS_ATTR) || {};
+  var fresh = KEYS.some(function (k) { return qs.get(k); });
+  if (fresh || !attr.landing_url) {
+    KEYS.forEach(function (k) { if (qs.get(k)) attr[k] = qs.get(k); });
+    attr.landing_url = location.origin + location.pathname + location.search;
+    attr.referrer = document.referrer || '';
+    ss(SS_ATTR, attr);
+  }
+
+  /* ── Scan links carry UTMs (or default tags) ── */
+  var carry = KEYS.filter(function (k) { return attr[k]; });
+  var add = carry.length ? carry.map(function (k) { return [k, attr[k]]; })
+    : [['utm_source', 'structtek'], ['utm_medium', 'landing'], ['utm_campaign', 'install']];
+  document.querySelectorAll('a[href*="audit.structtek.com"]').forEach(function (a) {
+    var u = new URL(a.href);
+    add.forEach(function (p) { if (!u.searchParams.has(p[0])) u.searchParams.append(p[0], p[1]); });
+    a.href = u.toString();
+    a.addEventListener('click', function () {
+      ga('ScanClick', { location: a.getAttribute('data-scan'), transport_type: 'beacon' });
+      if (typeof fbq === 'function') fbq('trackCustom', 'ScanClick', { location: a.getAttribute('data-scan') });
+    });
+  });
+
+  /* ── CTA buttons: scroll to the form, focus first field ── */
+  document.querySelectorAll('a[data-cta]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      ga('cta_click', { location: a.getAttribute('data-cta') });
+      var form = document.getElementById('book');
+      form.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      setTimeout(function () { document.getElementById('f-name').focus({ preventScroll: true }); }, 450);
+      history.replaceState(null, '', '#book');
+    });
+  });
+
+  /* ── Leak calculator (client-side only, nothing stored) ── */
+  var cL = document.getElementById('c-leads'), cJ = document.getElementById('c-job'), cO = document.getElementById('c-out');
+  function num(el) { var n = parseFloat(String(el.value).replace(/[^0-9.]/g, '')); return isFinite(n) && n > 0 ? n : 0; }
+  function calc() { cO.textContent = '$' + Math.round(num(cL) * num(cJ) * 12).toLocaleString('en-US'); }
+  cL.addEventListener('input', calc); cJ.addEventListener('input', calc); calc();
+
+  /* ── Config-driven bits ── */
+  document.querySelectorAll('[data-cfg]').forEach(function (el) { el.textContent = String(cfg[el.getAttribute('data-cfg')] || '').trim(); });
+  if (['concurrent', 'spots_left', 'next_start'].every(function (k) { return String(cfg[k] || '').trim(); })) {
+    document.getElementById('scarcity').hidden = false;
+  }
+  if (cfg.show_proof === true) {
+    var tpl = document.getElementById('proof-tpl');
+    document.getElementById('proof-slot').replaceWith(tpl.content.cloneNode(true));
+  }
+
+  /* ── ViewContent when the price block scrolls into view (once) ── */
+  if ('IntersectionObserver' in window) {
+    var priceIO = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) {
+        track('ViewContent', { content_name: 'install_price', value: 5000, currency: 'USD' });
+        ga('view_price', { value: 5000, currency: 'USD' });
+        priceIO.disconnect();
+      }
+    }, { threshold: 0.35 });
+    priceIO.observe(document.getElementById('price-block'));
+  }
+
+  /* ── Sticky mobile bar: after hero button leaves view; hidden while form is on screen or focused ── */
+  var bar = document.getElementById('sticky'), barLink = bar.querySelector('a');
+  var heroGone = false, formSeen = false, formFocus = false;
+  function syncBar() {
+    var show = heroGone && !formSeen && !formFocus;
+    bar.classList.toggle('show', show);
+    bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+    barLink.tabIndex = show ? 0 : -1;
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { heroGone = !en[0].isIntersecting && en[0].boundingClientRect.top < 0; syncBar(); })
+      .observe(document.getElementById('hero-btn'));
+    new IntersectionObserver(function (en) { formSeen = en[0].isIntersecting; syncBar(); })
+      .observe(document.getElementById('lead-form'));
+  }
+  var formEl = document.getElementById('lead-form');
+  formEl.addEventListener('focusin', function () { formFocus = true; syncBar(); });
+  formEl.addEventListener('focusout', function () { setTimeout(function () { formFocus = formEl.contains(document.activeElement); syncBar(); }, 0); });
+
+  /* ── Form ── */
+  var loadedAt = Date.now();
+  function cookie(n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; }
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 3 | 8)).toString(16); });
+  }
+  var checks = [
+    ['f-name', 'e-name', function (v) { return v.trim().length >= 1 ? '' : 'Enter your first name.'; }],
+    ['f-phone', 'e-phone', function (v) { return v.replace(/\D/g, '').length >= 10 ? '' : 'Enter a 10-digit phone number.'; }],
+    ['f-email', 'e-email', function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Enter a valid email.'; }],
+    ['f-trade', 'e-trade', function (v) { return v ? '' : 'Pick your trade.'; }],
+    ['f-crew', 'e-crew', function (v) { return v ? '' : 'Pick your crew size.'; }]
+  ];
+  function validate() {
+    var first = null;
+    checks.forEach(function (c) {
+      var el = document.getElementById(c[0]), msg = c[2](el.value);
+      document.getElementById(c[1]).textContent = msg;
+      el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (msg && !first) first = el;
+    });
+    if (first) first.focus();
+    return !first;
+  }
+  var btn = document.getElementById('submit-btn'), status = document.getElementById('form-status');
+  formEl.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validate()) return;
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var eventId = uuid();
+    var fbclid = attr.fbclid || '';
+    var smsChecked = document.getElementById('f-sms').checked;
+    var data = {
+      first_name: v('f-name'), phone: v('f-phone'), email: v('f-email'),
+      trade: v('f-trade'), crew_size: v('f-crew'), biggest_leak: v('f-leak'),
+      sms_consent: smsChecked,
+      sms_consent_text: smsChecked ? document.getElementById('sms-text').textContent.replace(/\s+/g, ' ').trim() : '',
+      sms_consent_at: smsChecked ? new Date().toISOString() : '',
+      tag: 'grand-slam-lead', source: 'landing-install',
+      utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '', utm_campaign: attr.utm_campaign || '',
+      utm_content: attr.utm_content || '', utm_term: attr.utm_term || '', fbclid: fbclid,
+      fbp: cookie('_fbp'), fbc: cookie('_fbc') || (fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : ''),
+      landing_url: attr.landing_url || location.href, referrer: attr.referrer || '',
+      submitted_at: new Date().toISOString(), event_id: eventId
+    };
+
+    var isBot = v('f-company') !== '' || (Date.now() - loadedAt) < 3000;
+
+    function finish() {
+      // Name/email go to the next page through sessionStorage, not the URL,
+      // so they never land in GA4 / Meta page URLs.
+      ss(SS_LEAD, { name: data.first_name, email: data.email });
+      location.href = '/install/booked/';
+    }
+
+    if (isBot) { setTimeout(finish, 400); return; }
+
+    track('Lead', { content_name: 'install_call', value: 5000, currency: 'USD' }, { eventID: eventId });
+    ga('generate_lead', { value: 5000, currency: 'USD', event_id: eventId });
+
+    var endpoint = String(cfg.sheet_endpoint || '').trim();
+    if (!endpoint) {
+      console.warn('[install] sheet_endpoint is empty; lead not saved anywhere (preview only).', data);
+      setTimeout(finish, 300);
+      return;
+    }
+    // Apps Script web apps don't return CORS headers, so post as text/plain with no-cors.
+    // The response can't be read; on a network error we still move the visitor on.
+    var done = false;
+    var timer = setTimeout(function () { if (!done) { done = true; finish(); } }, 6000);
+    fetch(endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data), keepalive: true })
+      .catch(function (err) { console.error('[install] lead post failed', err); ga('lead_post_error', { message: String(err) }); })
+      .then(function () { if (!done) { done = true; clearTimeout(timer); finish(); } });
+  });
+})();
+</script>
+</body>
+</html>
