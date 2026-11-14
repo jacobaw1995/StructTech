@@ -1,0 +1,26 @@
+# Blocks shipping any page that still has an unfilled "[BLANK: ...]" value.
+# The site has no build step (GitHub Pages serves the files as-is), so this check
+# runs on every PR into main and on every push to main. Make it a required check
+# under Settings → Branches so a failing PR can't be merged.
+name: BLANK guard
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  no-blanks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if any published page contains "[BLANK"
+        run: |
+          hits=$(grep -rn --include='*.html' -F '[BLANK' . --exclude-dir=.git --exclude-dir=_ops || true)
+          if [ -n "$hits" ]; then
+            echo "::error::Unfilled [BLANK: ...] values found. Fill them before launch:"
+            echo "$hits"
+            exit 1
+          fi
+          echo "No [BLANK values found."
