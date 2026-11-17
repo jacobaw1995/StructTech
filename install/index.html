@@ -88,9 +88,9 @@
     .on-paper{background:var(--paper);color:var(--ink)}
     .hl{background:linear-gradient(transparent 55%, var(--amber) 55%);color:inherit;padding:0 .08em}
     .on-ink .hl{background:var(--amber);color:var(--ink);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-    /* Solid highlights paint the full glyph box. With tight line-height the next line's
-       highlight covers the descenders above it (the "j" in "job"), so open these headings up. */
-    .on-ink h1,.on-ink h2,.on-ink .close-line{line-height:1.25}
+    /* Text inside a highlight sits in a positioned inner span, so it paints above every
+       highlight band. Otherwise a wrapped line's band covers the descenders above it (the "j" in "job"). */
+    .hl-t{position:relative}
     .fine{font-size:14px;line-height:1.5;color:var(--gray-600)}
     .on-ink .fine{color:var(--gray-on-ink)}
     .lead{font-size:20px}
@@ -314,7 +314,7 @@
 <section class="hero on-ink" aria-labelledby="h1">
   <div class="col">
     <p class="eyebrow">For 1-9 person construction crews</p>
-    <h1 id="h1">Every lead you miss is <span class="hl">a job you already paid to get.</span></h1>
+    <h1 id="h1"><span class="hl-t">Every lead you miss is </span><span class="hl"><span class="hl-t">a job you already paid to get.</span></span></h1>
     <p class="sub">In 14 days I build the system that catches every lead on the front end and tracks every job on the back end, so you stop running the business out of your phone and your head.</p>
     <a href="#book" class="btn" data-cta="hero" id="hero-btn">Book My Install Call</a>
     <p class="btn-under">30-minute call with Jacob. No pitch deck. We look at your leaks.</p>
@@ -325,7 +325,7 @@
 <!-- 3 · Problem -->
 <section class="on-paper" aria-labelledby="prob-h">
   <div class="col">
-    <h2 id="prob-h">Right now, <span class="hl">you are the office.</span></h2>
+    <h2 id="prob-h"><span class="hl-t">Right now, </span><span class="hl"><span class="hl-t">you are the office.</span></span></h2>
     <ul class="ticks">
       <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Calls hit your cell while you’re on a roof, at a bid, or driving. Half never get called back.</span></li>
       <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Estimates go out, and then nobody follows up.</span></li>
@@ -334,14 +334,14 @@
       <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>Your crew calls you for answers that should already be written down.</span></li>
       <li><svg class="ic-x" aria-hidden="true"><use href="#i-x"/></svg><span>You “do the office” at 9 p.m. after a full day.</span></li>
     </ul>
-    <p class="close-line">None of this is a hustle problem. <span class="hl">It’s a systems problem.</span></p>
+    <p class="close-line"><span class="hl-t">None of this is a hustle problem. </span><span class="hl"><span class="hl-t">It’s a systems problem.</span></span></p>
   </div>
 </section>
 
 <!-- 4 · Leak math (EXAMPLE) -->
 <section class="on-ink" aria-labelledby="math-h">
   <div class="col">
-    <h2 id="math-h">What a leak costs. <span class="hl">Example math.</span></h2>
+    <h2 id="math-h"><span class="hl-t">What a leak costs. </span><span class="hl"><span class="hl-t">Example math.</span></span></h2>
     <span class="ex-badge">EXAMPLE</span>
     <p class="math-line"><strong>2</strong> missed or slow leads a month that would have closed × <strong>$6,000</strong> average job × <strong>12</strong> months =
       <span class="math-total">$144,000 a year</span></p>
@@ -365,7 +365,7 @@
 <!-- 5 · Promise / what changes -->
 <section class="on-paper" aria-labelledby="prom-h">
   <div class="col">
-    <h2 id="prom-h">Front to back. <span class="hl">Nothing falls through the cracks.</span></h2>
+    <h2 id="prom-h"><span class="hl-t">Front to back. </span><span class="hl"><span class="hl-t">Nothing falls through the cracks.</span></span></h2>
     <ul class="ba">
       <li><span class="before">Calls go to voicemail</span><span class="arrow" aria-hidden="true">↓</span><span class="sr-only">now: </span><span class="after">Every call and form lands in one pipeline and gets a first reply.*</span></li>
       <li><span class="before">Estimates die</span><span class="arrow" aria-hidden="true">↓</span><span class="sr-only">now: </span><span class="after">Estimate follow-ups run on their own.</span></li>
@@ -381,7 +381,7 @@
 <!-- 6 · Two stages -->
 <section class="on-ink" aria-labelledby="stage-h">
   <div class="col">
-    <h2 id="stage-h">Two stages. <span class="hl">Getting the job. Doing the job.</span></h2>
+    <h2 id="stage-h"><span class="hl-t">Two stages. </span><span class="hl"><span class="hl-t">Getting the job. Doing the job.</span></span></h2>
     <div class="stages">
       <div class="stage">
         <span class="stage-num" aria-hidden="true">1</span>
@@ -439,7 +439,7 @@
 <!-- 9 · 14-day timeline -->
 <section class="on-paper" style="background:var(--gray-100)" aria-labelledby="time-h">
   <div class="col">
-    <h2 id="time-h">Live in <span class="hl">14 days.</span></h2>
+    <h2 id="time-h"><span class="hl-t">Live in </span><span class="hl"><span class="hl-t">14 days.</span></span></h2>
     <ol class="timeline">
       <li><span class="t-dot" aria-hidden="true">1</span><div class="t-days">Days 1-5</div><h3>Build.</h3><p>GHL pipelines, Monday boards, Workspace templates.</p></li>
       <li><span class="t-dot" aria-hidden="true">2</span><div class="t-days">Days 6-10</div><h3>Tune.</h3><p>Load your SOPs into the AI assistant, connect the triggers and notifications.</p></li>
@@ -542,7 +542,7 @@
       <li><svg class="ic-ok" style="color:#3FCB7E" aria-hidden="true"><use href="#i-ok"/></svg><span>You’ll give me access and a decision-maker for 14 days.</span></li>
       <li><svg class="ic-ok" style="color:#3FCB7E" aria-hidden="true"><use href="#i-ok"/></svg><span>You want one system, not five apps nobody uses.</span></li>
     </ul>
-    <h2 style="margin-top:64px">This is <span class="hl">not</span> for you if…</h2>
+    <h2 style="margin-top:64px"><span class="hl-t">This is </span><span class="hl"><span class="hl-t">not</span></span> for you if…</h2>
     <ul class="ticks">
       <li><svg class="ic-x" style="color:#FF5A6E" aria-hidden="true"><use href="#i-x"/></svg><span>You want a website or ads only. This is an ops install.</span></li>
       <li><svg class="ic-x" style="color:#FF5A6E" aria-hidden="true"><use href="#i-x"/></svg><span>You want to keep changing scope mid-build. Scope is locked at kickoff, and changes go through written change control.</span></li>
@@ -602,7 +602,7 @@
 <!-- 17 · Final CTA -->
 <section class="on-ink final" aria-labelledby="final-h">
   <div class="col">
-    <h2 id="final-h">Stop being <span class="hl">the office.</span></h2>
+    <h2 id="final-h"><span class="hl-t">Stop being </span><span class="hl"><span class="hl-t">the office.</span></span></h2>
     <p class="lead">30 minutes. We find your leaks, and you decide if the install is worth it.</p>
     <a href="#book" class="btn" data-cta="final">Book My Install Call</a>
     <div><a href="https://audit.structtek.com/" class="text-link" data-scan="final">Not ready? Run the free Revenue Leak Scan →</a></div>
