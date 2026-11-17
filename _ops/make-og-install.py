@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 src, out = sys.argv[1], sys.argv[2]
 W, H = 1200, 630
 AMBER = (232, 163, 58); WHITE = (255, 255, 255); INK = (10, 10, 10)
-F = 'office-leak-repair/fonts/'
+F = 'assets/fonts/'
 cond = lambda s: ImageFont.truetype(F + 'barlow-condensed-800.woff2', s)
 semi = lambda s: ImageFont.truetype(F + 'barlow-semi-condensed-600.woff2', s)
 
