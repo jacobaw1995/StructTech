@@ -61,7 +61,8 @@
   const normalizePath = (p) => p.replace(/index\.html$/, '');
   const path = normalizePath(window.location.pathname);
   document.querySelectorAll('.nav-links a, .nav-mobile a').forEach(link => {
-    if (normalizePath(new URL(link.href).pathname) === path) {
+    const u = new URL(link.href);
+    if (u.origin === window.location.origin && normalizePath(u.pathname) === path) {
       link.classList.add('active');
     }
   });
@@ -111,6 +112,18 @@
       }
       if (typeof gtag !== 'undefined') {
         gtag('event', 'cta_click', { event_category: 'engagement', event_label: 'scan_cta' });
+      }
+    });
+  });
+
+  // Clicks toward the core offer (/install/)
+  document.querySelectorAll('a[href^="/install"], a[href*="structtek.com/install"]').forEach(el => {
+    el.addEventListener('click', () => {
+      if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', 'InstallCTAClick', { content_name: 'Install CTA Click', content_category: 'Main Site' });
+      }
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'cta_click', { event_category: 'engagement', event_label: 'install_cta' });
       }
     });
   });
