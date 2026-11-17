@@ -89,8 +89,8 @@
     .hl{background:linear-gradient(transparent 55%, var(--amber) 55%);color:inherit;padding:0 .08em}
     .on-ink .hl{background:var(--amber);color:var(--ink);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
     /* Solid highlights paint the full glyph box. With tight line-height the next line's
-       highlight covers the descenders above it (the "j" in "job"), so open these headings up. */
-    .on-ink h1,.on-ink h2,.on-ink .close-line{line-height:1.25}
+       highlight covers the descenders above it (the "j" in "job"), so open these headings up. Each line gets its own band with a clear gap. */
+    .on-ink h1,.on-ink h2,.on-ink .close-line{line-height:1.32}
     .fine{font-size:14px;line-height:1.5;color:var(--gray-600)}
     .on-ink .fine{color:var(--gray-on-ink)}
     .lead{font-size:20px}
@@ -314,7 +314,7 @@
 <section class="hero on-ink" aria-labelledby="h1">
   <div class="col">
     <p class="eyebrow">For 1-9 person construction crews</p>
-    <h1 id="h1">Every lead you miss is <span class="hl">a job you already paid to get.</span></h1>
+    <h1 id="h1">Every lead you miss is <span class="hl">a&nbsp;job you already paid to get.</span></h1>
     <p class="sub">In 14 days I build the system that catches every lead on the front end and tracks every job on the back end, so you stop running the business out of your phone and your head.</p>
     <a href="#book" class="btn" data-cta="hero" id="hero-btn">Book My Install Call</a>
     <p class="btn-under">30-minute call with Jacob. No pitch deck. We look at your leaks.</p>
