@@ -88,6 +88,9 @@
     .on-paper{background:var(--paper);color:var(--ink)}
     .hl{background:linear-gradient(transparent 55%, var(--amber) 55%);color:inherit;padding:0 .08em}
     .on-ink .hl{background:var(--amber);color:var(--ink);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+    /* Solid highlights paint the full glyph box. With tight line-height the next line's
+       highlight covers the descenders above it (the "j" in "job"), so open these headings up. */
+    .on-ink h1,.on-ink h2,.on-ink .close-line{line-height:1.25}
     .fine{font-size:14px;line-height:1.5;color:var(--gray-600)}
     .on-ink .fine{color:var(--gray-on-ink)}
     .lead{font-size:20px}
